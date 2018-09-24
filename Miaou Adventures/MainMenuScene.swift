@@ -22,32 +22,32 @@ class MainMenuScene: SKScene {
         let viewSize:CGSize = view.bounds.size
         
         //Load background image
-        let BG = SKSpriteNode(imageNamed: "BG")
-        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        self.addChild(BG)
+        let bg = SKSpriteNode(imageNamed: "BG")
+        bg.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        self.addChild(bg)
         
         //Load logo image
-        let AppLogo = SKSpriteNode(imageNamed: "applogo_1")
-        AppLogo.position = CGPoint(x: viewSize.width/2, y: viewSize.height * 0.7)
-        self.addChild(AppLogo)
+        let appLogo = SKSpriteNode(imageNamed: "applogo_1")
+        appLogo.position = CGPoint(x: viewSize.width/2, y: viewSize.height * 0.7)
+        self.addChild(appLogo)
         
         // Load play button
-        let Play = SKSpriteNode(imageNamed: "play")
-        Play.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        self.addChild(Play)
-        Play.name = "play"
+        let play = SKSpriteNode(imageNamed: "play")
+        play.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        self.addChild(play)
+        play.name = "play"
         
         // Load score button
-        let Score = SKSpriteNode(imageNamed: "score")
-        Score.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
-        self.addChild(Score)
-        Score.name = "score"
+        let score = SKSpriteNode(imageNamed: "score")
+        score.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
+        self.addChild(score)
+        score.name = "score"
         
         // Load credits button
-        let Credits = SKSpriteNode(imageNamed: "credits")
-        Credits.position = CGPoint(x: viewSize.width/6, y: viewSize.height/10)
-        self.addChild(Credits)
-        Credits.name = "credits"
+        let credits = SKSpriteNode(imageNamed: "credits")
+        credits.position = CGPoint(x: viewSize.width/6, y: viewSize.height/10)
+        self.addChild(credits)
+        credits.name = "credits"
         
         // Load sound on&off Button
         soundButton = SKSpriteNode(texture: SoundManager.sharedInstance.isMuted ?soundButtonOff:soundButtonOn)
@@ -102,25 +102,15 @@ class MainMenuScene: SKScene {
         
         if let touch = touches.first {
             if selectedButton != nil {
-                handleSoundButtonHover(isHovering: false)
             }
             if soundButton.contains(touch.location(in: self)) {
                 selectedButton = soundButton
-                handleSoundButtonHover(isHovering: true)
             }
         }
-        
-        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-        
-        if let touch = touches.first {
-        if selectedButton == soundButton {
-                handleSoundButtonHover(isHovering: (soundButton.contains(touch.location(in: self))))
-            }
-        }
         
     }
     
@@ -128,16 +118,12 @@ class MainMenuScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
         
         if let touch = touches.first {
-            
          if selectedButton == soundButton {
-                handleSoundButtonHover(isHovering: false)
-                
                 if (soundButton.contains(touch.location(in: self))) {
                     handleSoundButtonClick()
                 }
             }
         }
-        
         selectedButton = nil
     }
     
@@ -145,14 +131,7 @@ class MainMenuScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    func handleSoundButtonHover(isHovering : Bool) {
-        if isHovering {
-            soundButton.alpha = 0.5
-        } else {
-            soundButton.alpha = 1.0
-        }
-    }
-    
+    //Handles button click
     func handleSoundButtonClick() {
         if SoundManager.sharedInstance.toggleMute() {
             //Is muted
