@@ -10,7 +10,13 @@ import Foundation
 import SpriteKit
 import CoreMotion
 
-class GamePlayScene: SKScene {
+class GamePlayScene: SKScene, SKPhysicsContactDelegate {
+    
+    //Declare bitmasks
+    struct CollisionBitMask {
+        static let heroCategory:UInt32 = 0x1 << 0
+        static let meteorCategory:UInt = 0x1 << 1
+    }
     
     //Declare variables
     var stars1 = SKSpriteNode()
@@ -29,10 +35,15 @@ class GamePlayScene: SKScene {
     
     override init(size: CGSize){
         super.init(size: size)
+        
         let viewSize:CGSize!
         viewSize = size
+        
+        //Add physics to the scene
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        
+        //Load motionmanager
         motionManager = CMMotionManager()
         motionManager.startAccelerometerUpdates()
         
@@ -59,6 +70,7 @@ class GamePlayScene: SKScene {
         //Load hero
         hero = SKSpriteNode(imageNamed: "cat_hero")
         hero.position = CGPoint(x: viewSize.width/2, y: viewSize.height/10)
+        //Add physics
         hero.physicsBody = SKPhysicsBody(texture: hero.texture!,
                                          size: hero.texture!.size())
         hero.physicsBody?.isDynamic = true
@@ -79,16 +91,22 @@ class GamePlayScene: SKScene {
         
         func addMeteor() {
             meteor = SKSpriteNode(imageNamed: "meteor")
+            
             // Random spawn
             let actualX = random(min: meteor.size.width/2, max: size.width - meteor.size.width/2)
+            
             // Starting position
             meteor.position = CGPoint(x: actualX, y: size.height + meteor.size.height/2)
             addChild(meteor)
+            
             // Determine speed of the monster
-            let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
+            let actualDuration = random(min: CGFloat(2.0), max: CGFloat(3.5))
+            
             //Add physics
             meteor.physicsBody = SKPhysicsBody(texture: meteor.texture!,
                                                size: meteor.texture!.size())
+            meteor.physicsBody?.isDynamic = true
+            
             // Create the actions
             let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -meteor.size.height/2),
                                            duration: TimeInterval(actualDuration))
@@ -96,6 +114,7 @@ class GamePlayScene: SKScene {
             meteor.run(SKAction.sequence([actionMove, actionMoveDone]))
             
         }
+        
         //Start meteor function
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addMeteor),
                                                       SKAction.wait(forDuration: 1.0)])))
@@ -118,7 +137,7 @@ class GamePlayScene: SKScene {
             //this ensures that your backgrounds line up perfectly
         }
         if let accelerometerData = motionManager.accelerometerData {
-            hero.physicsBody!.applyForce(CGVector(dx: 80 * CGFloat(accelerometerData.acceleration.x), dy: 80 * CGFloat(accelerometerData.acceleration.y)))
+            hero.physicsBody!.applyForce(CGVector(dx: 100 * CGFloat(accelerometerData.acceleration.x), dy: 100 * CGFloat(accelerometerData.acceleration.y)))
         }
     }
     

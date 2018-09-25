@@ -24,34 +24,40 @@ class MainMenuScene: SKScene {
         //Load background image
         let bg = SKSpriteNode(imageNamed: "BG")
         bg.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        bg.zPosition = 1
         self.addChild(bg)
         
         //Load logo image
         let appLogo = SKSpriteNode(imageNamed: "applogo_1")
         appLogo.position = CGPoint(x: viewSize.width/2, y: viewSize.height * 0.7)
+        appLogo.zPosition = 2
         self.addChild(appLogo)
         
         // Load play button
         let play = SKSpriteNode(imageNamed: "play")
         play.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        play.zPosition = 2
         self.addChild(play)
         play.name = "play"
         
         // Load score button
         let score = SKSpriteNode(imageNamed: "score")
         score.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
+        score.zPosition = 2
         self.addChild(score)
         score.name = "score"
         
         // Load credits button
         let credits = SKSpriteNode(imageNamed: "credits")
         credits.position = CGPoint(x: viewSize.width/6, y: viewSize.height/10)
+        credits.zPosition = 2
         self.addChild(credits)
         credits.name = "credits"
         
         // Load sound on&off Button
         soundButton = SKSpriteNode(texture: SoundManager.sharedInstance.isMuted ?soundButtonOff:soundButtonOn)
         soundButton.position = CGPoint(x: viewSize.width/1.2, y: viewSize.height/10)
+        soundButton.zPosition = 2
         addChild(soundButton)
         
     }
