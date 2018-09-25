@@ -17,6 +17,8 @@ class MainMenuScene: SKScene {
     var soundButton : SKSpriteNode! = nil
     var selectedButton : SKSpriteNode?
     
+    var resetScore = SKLabelNode()
+    
     override func didMove(to view: SKView) {
         
         let viewSize:CGSize = view.bounds.size
@@ -59,6 +61,9 @@ class MainMenuScene: SKScene {
         soundButton.position = CGPoint(x: viewSize.width/1.2, y: viewSize.height/10)
         soundButton.zPosition = 2
         addChild(soundButton)
+        
+        //Reset Score
+        createResetScore()
         
     }
     
@@ -104,6 +109,12 @@ class MainMenuScene: SKScene {
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }
+            
+            if name == "score"{
+                let scene = ScoreScene(size: self.size)
+                let reveal = SKTransition.reveal(with: .down, duration: 1.0)
+                self.view?.presentScene(scene, transition: reveal)
+            }
         }
         
         if let touch = touches.first {
@@ -111,6 +122,13 @@ class MainMenuScene: SKScene {
             }
             if soundButton.contains(touch.location(in: self)) {
                 selectedButton = soundButton
+            }
+        }
+        if let touch = touches.first{
+            if resetScore.contains(touch.location(in: self)){
+                let defaults = UserDefaults.standard
+                defaults.set(0, forKey: "highestScore")
+                defaults.synchronize()
             }
         }
     }

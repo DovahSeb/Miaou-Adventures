@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
 
 
      var shouldAutorotate: Bool {
-        return true
+        return false
     }
 
      var supportedInterfaceOrientations: UIInterfaceOrientationMask {
