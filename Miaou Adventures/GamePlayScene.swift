@@ -16,11 +16,8 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     //Declare variables
     var scoreLbl = SKLabelNode()
     var score = 0
-    var counter = 0
     var stars1 = SKSpriteNode()
     var stars2 = SKSpriteNode()
-    var stars3 = SKSpriteNode()
-    var scr_vert = SKAction()
     var hero = SKSpriteNode()
     var coins = SKSpriteNode()
     var motionManager = CMMotionManager()
@@ -29,9 +26,11 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var playButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
     var backButton = SKSpriteNode()
-    var heroDead = Bool(false)
-    
- 
+    var Explosion = SKSpriteNode()
+    var gameOverText = SKLabelNode()
+    var gameOverScore = SKLabelNode()
+    var gameOverRestart = SKSpriteNode()
+    var gameOverQuit = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -71,37 +70,15 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         //stars2.zPosition = 1
         //self.addChild(stars2)
         
-        //stars3 = SKSpriteNode(imageNamed: "stars")
-        //stars3.position = CGPoint(x: 0, y: self.frame.size.height + stars2.position.y)
-        //stars2.zPosition = 1
-        //self.addChild(stars3)
-        
-        //Start stars scrolling
-        stars1.run(scr_vert)
-        //stars2.run(scr_vert); stars3.run(scr_vert)
-        
         //Load hero
         addHero()
         
         //Start coins function
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addCoins), SKAction.wait(forDuration: 10.0)])))
         
-        //Load meteor
-        addMeteor()
-        
         //Start meteor function
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addMeteor),
                                                       SKAction.wait(forDuration: 1.0)])))
-        
-        //score counter
-        let delay = SKAction.wait(forDuration: 0.5)
-        let incrementScore = SKAction.run ({
-            self.score = self.score + 1
-            self.scoreLbl.text = "Score: \(self.score)"
-        })
-        self.run(SKAction.repeatForever(SKAction.sequence([delay,incrementScore])))
-        
-        
         
     } //init function
     
@@ -115,6 +92,18 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
                 let scene = GamePlayScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
+                restartScene()
+            }
+            
+            if backButton.contains(touch.location(in: self)){
+                let scene = MainMenuScene(size: self.size)
+                let reveal = SKTransition.reveal(with: .right, duration: 1.0)
+                self.view?.presentScene(scene, transition: reveal)
+            }
+            
+            if gameOverRestart.contains(touch.location(in: self)){
+                let scene = GamePlayScene(size: self.size)
+                self.view?.presentScene(scene)
                 let defaults = UserDefaults.standard
                 if defaults.object(forKey: "highestScore") != nil {
                     let hscore = defaults.integer(forKey: "highestScore")
@@ -127,10 +116,10 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
                 restartScene()
             }
             
-            if backButton.contains(touch.location(in: self)){
+            if gameOverQuit.contains(touch.location(in: self)){
                 let scene = MainMenuScene(size: self.size)
-                let reveal = SKTransition.reveal(with: .up, duration: 1.0)
-                self.view?.presentScene(scene, transition: reveal)
+                let reveal = SKTransition.reveal(with: .right, duration: 1.0)
+                self.view?.presentScene(scene, transition:reveal)
                 let defaults = UserDefaults.standard
                 if defaults.object(forKey: "highestScore") != nil {
                     let hscore = defaults.integer(forKey: "highestScore")
@@ -163,23 +152,17 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.coinsCategory{
             print("contact")
             contact.bodyB.node?.removeFromParent()
-            score += 50
+            score += 10
+            
         }
         
         if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.meteorCategory{
             print("contact")
-            let ExplosionTexture = SKTexture(imageNamed: "explosion")
-            let animateExplosion = SKAction.sequence([
-                SKAction.wait(forDuration: 0, withRange: 0),
-                SKAction.animate(with: [ExplosionTexture], timePerFrame: 0.05)
-                ])
-            let Explosion = SKSpriteNode(texture: ExplosionTexture)
-            Explosion.position = CGPoint(x: hero.position.x, y: hero.position.y)
-            Explosion.run(animateExplosion)
-            addChild(Explosion)
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
-            Explosion.run(animateExplosion, completion : {Explosion.removeFromParent()})
+            createExplosion()
+            gameOver()
+            
         }
     }
     
@@ -188,16 +171,13 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         //this ensures that your backgrounds line up perfectly
         if stars1.position.y <= -self.frame.size.height {
-            stars1.position.y = self.frame.size.height
+           stars1.position.y = self.frame.size.height
         }
         if stars2.position.y <= -self.frame.size.height {
             stars2.position.y = self.frame.size.height
         }
-        if stars3.position.y <= -self.frame.size.height {
-            stars3.position.y = self.frame.size.height
-        }
         if let accelerometerData = motionManager.accelerometerData {
-            hero.physicsBody!.applyForce(CGVector(dx: 100 * CGFloat(accelerometerData.acceleration.x), dy: 100 * CGFloat(accelerometerData.acceleration.y)))
+            hero.physicsBody!.applyForce(CGVector(dx: 120 * CGFloat(accelerometerData.acceleration.x), dy: 120 * CGFloat(accelerometerData.acceleration.y)))
         }
     }
 } //class end

@@ -34,7 +34,7 @@ extension GamePlayScene{
         restartButton.zPosition = 3
         restartButton.size = CGSize(width: 30, height: 30)
         self.addChild(restartButton)
-        restartButton.run(SKAction.scale(to: 1.0, duration: 0.5))
+        //restartButton.run(SKAction.scale(to: 1.0, duration: 0.5))
     }
     
     func createBackButton(){
@@ -53,7 +53,12 @@ extension GamePlayScene{
         scoreLbl.fontSize = 20
         scoreLbl.fontName = "Good Times"
         self.addChild(scoreLbl)
-        //return scoreLbl
+        let delay = SKAction.wait(forDuration: 0.5)
+        let incrementScore = SKAction.run ({
+            self.score += 1
+            self.scoreLbl.text = "Score: " + "\(self.score)"
+        })
+        scoreLbl.run(SKAction.repeatForever(SKAction.sequence([delay,incrementScore])))
     }
     
     func star1(){
@@ -70,42 +75,39 @@ extension GamePlayScene{
         hero.position = CGPoint(x: self.frame.width/2, y: self.frame.height/10)
         hero.zPosition = 2
         //Add physics
-        hero.physicsBody = SKPhysicsBody(texture: hero.texture!,
-                                         size: hero.texture!.size())
+        hero.physicsBody = SKPhysicsBody(circleOfRadius: max(hero.size.width/2, hero.size.height/2))
+        hero.physicsBody?.usesPreciseCollisionDetection = true
         hero.physicsBody?.isDynamic = true
         hero.physicsBody?.affectedByGravity = false
-        hero.physicsBody?.mass = 0.2
+        hero.physicsBody?.mass = 0.15
         hero.physicsBody?.allowsRotation = false
-        hero.physicsBody?.linearDamping = 0.5
         hero.physicsBody?.categoryBitMask = CollisionBitMask.heroCategory
-        hero.physicsBody?.collisionBitMask = CollisionBitMask.sceneCategory
-        hero.physicsBody?.contactTestBitMask = CollisionBitMask.meteorCategory | CollisionBitMask.sceneCategory
+        hero.physicsBody?.collisionBitMask = CollisionBitMask.meteorCategory |  CollisionBitMask.sceneCategory
+        hero.physicsBody?.contactTestBitMask = CollisionBitMask.meteorCategory | CollisionBitMask.coinsCategory | CollisionBitMask.sceneCategory
         self.addChild(hero)
-        hero.name = "hero"
     }
     
     func addCoins(){
         coins = SKSpriteNode(imageNamed: "coins")
         // Random spawn
-        let actualX = random(min: coins.size.width/2, max: size.width - coins.size.width/2)
-        coins.position = CGPoint(x: actualX, y: size.height + coins.size.height/2)
+        let actualX = random(min: size.width/2, max: size.width - coins.size.width/2)
+        coins.position = CGPoint(x: actualX, y: size.height + size.height/2)
         coins.zPosition = 2
-        addChild(coins)
         // Determine speed of the coins
         let actualDuration = random(min: CGFloat(3.0), max: CGFloat(3.5))
         //Add physics
-        coins.physicsBody = SKPhysicsBody(texture: coins.texture!,
-                                           size: coins.texture!.size())
+        coins.physicsBody = SKPhysicsBody(circleOfRadius: max(coins.size.width/2, coins.size.height/2))
+        coins.physicsBody?.usesPreciseCollisionDetection = true
         coins.physicsBody?.isDynamic = true
         coins.physicsBody?.categoryBitMask = CollisionBitMask.coinsCategory
-        //coins.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory
+        coins.physicsBody?.collisionBitMask = 0
         coins.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
         // Create the actions
-        let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -coins.size.height/2),
+        let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -coins.size.height),
                                        duration: TimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
-        coins.run(SKAction.sequence([actionMove, actionMoveDone]), withKey:"meteor")
-        
+        coins.run(SKAction.sequence([actionMove, actionMoveDone]))
+        self.addChild(coins)
     }
     
     
@@ -114,23 +116,72 @@ extension GamePlayScene{
         // Random spawn
         let actualX = random(min: meteor.size.width/2, max: size.width - meteor.size.width/2)
         // Starting position
-        meteor.position = CGPoint(x: actualX, y: size.height + meteor.size.height/2)
+        meteor.position = CGPoint(x: actualX, y: size.height + size.height/2)
         meteor.zPosition = 2
-        addChild(meteor)
+        self.addChild(meteor)
         // Determine speed of the monster
         let actualDuration = random(min: CGFloat(2.0), max: CGFloat(2.5))
         //Add physics
-        meteor.physicsBody = SKPhysicsBody(texture: meteor.texture!,
-                                           size: meteor.texture!.size())
+        meteor.physicsBody = SKPhysicsBody(circleOfRadius: max(meteor.size.width/2, meteor.size.height/2))
+        meteor.physicsBody?.usesPreciseCollisionDetection = true
         meteor.physicsBody?.isDynamic = true
         meteor.physicsBody?.categoryBitMask = CollisionBitMask.meteorCategory
-        //meteor.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory
+        meteor.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory | CollisionBitMask.meteorCategory
         meteor.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
         // Create the actions
         let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -meteor.size.height/2),
                                        duration: TimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
-        meteor.run(SKAction.sequence([actionMove, actionMoveDone]), withKey:"meteor")
+        meteor.run(SKAction.sequence([actionMove, actionMoveDone]))
+    }
+    
+    func createExplosion(){
+        let ExplosionTexture = SKTexture(imageNamed: "explosion")
+        let animateExplosion = SKAction.sequence([
+            SKAction.wait(forDuration: 0, withRange: 0.2),
+            SKAction.animate(with: [ExplosionTexture], timePerFrame: 0.05)
+            ])
+        let Explosion = SKSpriteNode(texture: ExplosionTexture)
+        Explosion.position = CGPoint(x: hero.position.x, y: hero.position.y)
+        Explosion.run(animateExplosion)
+        addChild(Explosion)
+        Explosion.run(animateExplosion, completion : {Explosion.removeFromParent()})
+    }
+    
+    func createGameOverText(){
+        gameOverText = SKLabelNode()
+        gameOverText.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.8)
+        gameOverText.text = "Game Over"
+        gameOverText.fontColor = SKColor.white
+        gameOverText.zPosition = 3
+        gameOverText.fontSize = 30
+        gameOverText.fontName = "Good Times"
+        self.addChild(gameOverText)
+    }
+    
+    func createGameOverScore(){
+        gameOverScore = SKLabelNode()
+        gameOverScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.7)
+        gameOverScore.text = "Your Score: \(score)"
+        gameOverScore.fontColor = SKColor.white
+        gameOverScore.zPosition = 3
+        gameOverScore.fontSize = 20
+        gameOverScore.fontName = "Good Times"
+        self.addChild(gameOverScore)
+    }
+    
+    func createGameOverRestart(){
+        gameOverRestart = SKSpriteNode(imageNamed: "reset_over")
+        gameOverRestart.position = CGPoint(x: self.frame.width * 0.7, y: self.frame.height/2)
+        gameOverRestart.zPosition = 3
+        self.addChild(gameOverRestart)
+    }
+    
+    func createGameOverQuit(){
+        gameOverQuit = SKSpriteNode(imageNamed: "back_over")
+        gameOverQuit.position = CGPoint(x: self.frame.width/3, y: self.frame.height/2)
+        gameOverQuit.zPosition = 3
+        self.addChild(gameOverQuit)
     }
     
     func createScene(){
@@ -141,6 +192,7 @@ extension GamePlayScene{
         self.physicsWorld.contactDelegate = self
         //Add collision and contact detection
         self.physicsBody?.categoryBitMask = CollisionBitMask.sceneCategory
+        self.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory
         self.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
         //Load background
         self.backgroundColor = .black
@@ -158,6 +210,17 @@ extension GamePlayScene{
         star1()
         addHero()
         addMeteor()
+    }
+    
+    func gameOver(){
+        backButton.removeFromParent()
+        scoreLbl.removeFromParent()
+        pauseButton.removeFromParent()
+        restartButton.removeFromParent()
+        createGameOverText()
+        createGameOverScore()
+        createGameOverRestart()
+        createGameOverQuit()
     }
     
     func random() -> CGFloat {
