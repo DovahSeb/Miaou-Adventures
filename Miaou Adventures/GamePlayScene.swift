@@ -13,13 +13,6 @@ import CoreMotion
 
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
-    //Declare bitmasks
-    struct CollisionBitMask {
-        static let heroCategory:UInt32 = 0x1 << 0
-        static let laserCategory:UInt32 = 0x1 << 1
-        static let meteorCategory:UInt = 0x1 << 2
-    }
-    
     //Declare variables
     var scoreLbl = SKLabelNode()
     var score = 0
@@ -29,12 +22,14 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var stars3 = SKSpriteNode()
     var scr_vert = SKAction()
     var hero = SKSpriteNode()
+    var coins = SKSpriteNode()
     var motionManager = CMMotionManager()
     var meteor = SKSpriteNode()
     var pauseButton = SKSpriteNode()
     var playButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
     var backButton = SKSpriteNode()
+    var heroDead = Bool(false)
     
  
     
@@ -46,7 +41,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize){
         super.init(size: size)
-        
         //let viewSize:CGSize!
         //viewSize = size
         
@@ -88,6 +82,9 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         //Load hero
         addHero()
+        
+        //Start coins function
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addCoins), SKAction.wait(forDuration: 10.0)])))
         
         //Load meteor
         addMeteor()
@@ -158,6 +155,34 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
+        
+        if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.coinsCategory{
+            print("contact")
+            contact.bodyB.node?.removeFromParent()
+            score += 50
+        }
+        
+        if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.meteorCategory{
+            print("contact")
+            let ExplosionTexture = SKTexture(imageNamed: "explosion")
+            let animateExplosion = SKAction.sequence([
+                SKAction.wait(forDuration: 0, withRange: 0),
+                SKAction.animate(with: [ExplosionTexture], timePerFrame: 0.05)
+                ])
+            let Explosion = SKSpriteNode(texture: ExplosionTexture)
+            Explosion.position = CGPoint(x: hero.position.x, y: hero.position.y)
+            Explosion.run(animateExplosion)
+            addChild(Explosion)
+            contact.bodyA.node?.removeFromParent()
+            contact.bodyB.node?.removeFromParent()
+            Explosion.run(animateExplosion, completion : {Explosion.removeFromParent()})
+        }
+    }
+    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered

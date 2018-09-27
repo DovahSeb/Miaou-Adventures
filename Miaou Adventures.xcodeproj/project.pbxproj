@@ -21,8 +21,9 @@
 		1E9C51FE215A6FFC0046F780 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C51FD215A6FFC0046F780 /* ScoreScene.swift */; };
 		1E9C5200215A804E0046F780 /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C51FF215A804E0046F780 /* GameElements.swift */; };
 		1EB763392154BC9E003B67A0 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB763382154BC9E003B67A0 /* CreditsScene.swift */; };
-		1EBB64FE2153B570007FF3AA /* Ready Player One.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1EBB64FD2153B54B007FF3AA /* Ready Player One.otf */; };
 		1EBB65012153C5CF007FF3AA /* GamePlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB65002153C5CF007FF3AA /* GamePlayScene.swift */; };
+		1EDAF17B215B9656006570C1 /* good times rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EDAF17A215B9656006570C1 /* good times rg.ttf */; };
+		1EE72836215BAD1F0045F9DB /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1EE72835215BAD1F0045F9DB /* explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +64,9 @@
 		1E9C51FD215A6FFC0046F780 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
 		1E9C51FF215A804E0046F780 /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		1EB763382154BC9E003B67A0 /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
-		1EBB64FD2153B54B007FF3AA /* Ready Player One.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ready Player One.otf"; sourceTree = "<group>"; };
 		1EBB65002153C5CF007FF3AA /* GamePlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayScene.swift; sourceTree = "<group>"; };
+		1EDAF17A215B9656006570C1 /* good times rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "good times rg.ttf"; path = "../../../good times rg.ttf"; sourceTree = "<group>"; };
+		1EE72835215BAD1F0045F9DB /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		1E28A01421522C7A005ABD37 /* Miaou Adventures */ = {
 			isa = PBXGroup;
 			children = (
+				1EE72835215BAD1F0045F9DB /* explosion.sks */,
 				1EBB64FC2153B544007FF3AA /* Font */,
 				1E28A01521522C7A005ABD37 /* AppDelegate.swift */,
 				1E28A01921522C7A005ABD37 /* Actions.sks */,
@@ -163,7 +166,7 @@
 		1EBB64FC2153B544007FF3AA /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				1EBB64FD2153B54B007FF3AA /* Ready Player One.otf */,
+				1EDAF17A215B9656006570C1 /* good times rg.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -272,12 +275,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EBB64FE2153B570007FF3AA /* Ready Player One.otf in Resources */,
 				1E28A02121522C7A005ABD37 /* Main.storyboard in Resources */,
 				1E28A02621522C7C005ABD37 /* LaunchScreen.storyboard in Resources */,
 				1E28A01A21522C7A005ABD37 /* Actions.sks in Resources */,
 				1E61C0AC21560A9E002340B1 /* float_space.mp3 in Resources */,
+				1EE72836215BAD1F0045F9DB /* explosion.sks in Resources */,
 				1E21A65E215235E0008A6668 /* Assets.xcassets in Resources */,
+				1EDAF17B215B9656006570C1 /* good times rg.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

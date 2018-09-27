@@ -9,6 +9,15 @@
 import Foundation
 import SpriteKit
 
+//Declare bitmasks
+struct CollisionBitMask {
+    static let heroCategory:UInt32 = 0x1 << 0
+    static let laserCategory:UInt32 = 0x1 << 1
+    static let coinsCategory:UInt32 = 0x1 << 2
+    static let meteorCategory:UInt32 = 0x1 << 3
+    static let sceneCategory: UInt32 = 0x1 << 4
+}
+
 extension GamePlayScene{
     
     func createPauseButton() {
@@ -42,7 +51,7 @@ extension GamePlayScene{
         scoreLbl.fontColor = SKColor.white
         scoreLbl.zPosition = 3
         scoreLbl.fontSize = 20
-        scoreLbl.fontName = "Arial"
+        scoreLbl.fontName = "Good Times"
         self.addChild(scoreLbl)
         //return scoreLbl
     }
@@ -68,9 +77,37 @@ extension GamePlayScene{
         hero.physicsBody?.mass = 0.2
         hero.physicsBody?.allowsRotation = false
         hero.physicsBody?.linearDamping = 0.5
+        hero.physicsBody?.categoryBitMask = CollisionBitMask.heroCategory
+        hero.physicsBody?.collisionBitMask = CollisionBitMask.sceneCategory
+        hero.physicsBody?.contactTestBitMask = CollisionBitMask.meteorCategory | CollisionBitMask.sceneCategory
         self.addChild(hero)
         hero.name = "hero"
     }
+    
+    func addCoins(){
+        coins = SKSpriteNode(imageNamed: "coins")
+        // Random spawn
+        let actualX = random(min: coins.size.width/2, max: size.width - coins.size.width/2)
+        coins.position = CGPoint(x: actualX, y: size.height + coins.size.height/2)
+        coins.zPosition = 2
+        addChild(coins)
+        // Determine speed of the coins
+        let actualDuration = random(min: CGFloat(3.0), max: CGFloat(3.5))
+        //Add physics
+        coins.physicsBody = SKPhysicsBody(texture: coins.texture!,
+                                           size: coins.texture!.size())
+        coins.physicsBody?.isDynamic = true
+        coins.physicsBody?.categoryBitMask = CollisionBitMask.coinsCategory
+        //coins.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory
+        coins.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
+        // Create the actions
+        let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -coins.size.height/2),
+                                       duration: TimeInterval(actualDuration))
+        let actionMoveDone = SKAction.removeFromParent()
+        coins.run(SKAction.sequence([actionMove, actionMoveDone]), withKey:"meteor")
+        
+    }
+    
     
     func addMeteor() {
         meteor = SKSpriteNode(imageNamed: "meteor")
@@ -86,11 +123,14 @@ extension GamePlayScene{
         meteor.physicsBody = SKPhysicsBody(texture: meteor.texture!,
                                            size: meteor.texture!.size())
         meteor.physicsBody?.isDynamic = true
+        meteor.physicsBody?.categoryBitMask = CollisionBitMask.meteorCategory
+        //meteor.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory
+        meteor.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
         // Create the actions
         let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -meteor.size.height/2),
                                        duration: TimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
-        meteor.run(SKAction.sequence([actionMove, actionMoveDone]))
+        meteor.run(SKAction.sequence([actionMove, actionMoveDone]), withKey:"meteor")
     }
     
     func createScene(){
@@ -99,6 +139,9 @@ extension GamePlayScene{
         self.physicsBody?.isDynamic = false
         self.physicsBody?.affectedByGravity = false
         self.physicsWorld.contactDelegate = self
+        //Add collision and contact detection
+        self.physicsBody?.categoryBitMask = CollisionBitMask.sceneCategory
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
         //Load background
         self.backgroundColor = .black
     }
@@ -148,7 +191,7 @@ extension ScoreScene{
         }
         highScore.zPosition = 2
         highScore.fontSize = 30
-        highScore.fontName = "Arial"
+        highScore.fontName = "Good Times"
         self.addChild(highScore)
         //return highScore
     }
@@ -163,7 +206,7 @@ extension MainMenuScene{
         resetScore.text = "Reset Score"
         resetScore.zPosition = 2
         resetScore.fontSize = 15
-        resetScore.fontName = "Ready Player One"
+        resetScore.fontName = "Good Times"
         self.addChild(resetScore)
     }
     
