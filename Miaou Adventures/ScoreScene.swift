@@ -22,14 +22,11 @@ class ScoreScene: SKScene {
     
     override init(size: CGSize){
         super.init(size: size)
-        let viewSize:CGSize!
-        viewSize = size
+        //let viewSize:CGSize!
+        //viewSize = size
         
         //Load Background
-        let BG = SKSpriteNode(imageNamed: "BG")
-        BG.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        BG.zPosition = 1
-        self.addChild(BG)
+        self.backgroundColor = .black
         
         //Add highscore
         createHighscoreLabel()
@@ -48,7 +45,7 @@ class ScoreScene: SKScene {
         {
             if name == "scoreBack"{
                 let scene = MainMenuScene(size: self.size)
-                let reveal = SKTransition.reveal(with: .up, duration: 1.0)
+                let reveal = SKTransition.reveal(with: .right, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }
         }

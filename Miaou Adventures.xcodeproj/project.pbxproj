@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E01A27A215E81D400482FE7 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E01A278215E81D300482FE7 /* explosion.mp3 */; };
+		1E01A27B215E81D400482FE7 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E01A279215E81D300482FE7 /* coin.mp3 */; };
 		1E0A6E4F215547B4008C380C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0A6E4E215547B4008C380C /* SoundManager.swift */; };
 		1E21A65E215235E0008A6668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E21A65D215235DF008A6668 /* Assets.xcassets */; };
 		1E28A01621522C7A005ABD37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E28A01521522C7A005ABD37 /* AppDelegate.swift */; };
@@ -22,9 +24,19 @@
 		1E9C5200215A804E0046F780 /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C51FF215A804E0046F780 /* GameElements.swift */; };
 		1EB763392154BC9E003B67A0 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB763382154BC9E003B67A0 /* CreditsScene.swift */; };
 		1EBB65012153C5CF007FF3AA /* GamePlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB65002153C5CF007FF3AA /* GamePlayScene.swift */; };
-		1EDAF17B215B9656006570C1 /* good times rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EDAF17A215B9656006570C1 /* good times rg.ttf */; };
-		1EE72836215BAD1F0045F9DB /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1EE72835215BAD1F0045F9DB /* explosion.sks */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		1E038C5C215E28E40019CD68 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist.strings;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyStrings\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		1E28A02D21522C7C005ABD37 /* PBXContainerItemProxy */ = {
@@ -44,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E01A278215E81D300482FE7 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
+		1E01A279215E81D300482FE7 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
 		1E0A6E4E215547B4008C380C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1E21A65D215235DF008A6668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E28A01221522C7A005ABD37 /* Miaou Adventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Miaou Adventures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +67,6 @@
 		1E28A01D21522C7A005ABD37 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1E28A02021522C7A005ABD37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E28A02521522C7C005ABD37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1E28A02721522C7C005ABD37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E28A02C21522C7C005ABD37 /* Miaou AdventuresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Miaou AdventuresTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E28A03021522C7C005ABD37 /* Miaou_AdventuresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Miaou_AdventuresTests.swift; sourceTree = "<group>"; };
 		1E28A03221522C7C005ABD37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,12 +74,11 @@
 		1E28A03B21522C7C005ABD37 /* Miaou_AdventuresUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Miaou_AdventuresUITests.swift; sourceTree = "<group>"; };
 		1E28A03D21522C7C005ABD37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E61C0AB21560A9E002340B1 /* float_space.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = float_space.mp3; sourceTree = "<group>"; };
+		1E8CADEB215E264200BC53D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		1E9C51FD215A6FFC0046F780 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
 		1E9C51FF215A804E0046F780 /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		1EB763382154BC9E003B67A0 /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		1EBB65002153C5CF007FF3AA /* GamePlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayScene.swift; sourceTree = "<group>"; };
-		1EDAF17A215B9656006570C1 /* good times rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "good times rg.ttf"; path = "../../../good times rg.ttf"; sourceTree = "<group>"; };
-		1EE72835215BAD1F0045F9DB /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +109,8 @@
 		1E0A6E50215547C0008C380C /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				1E01A279215E81D300482FE7 /* coin.mp3 */,
+				1E01A278215E81D300482FE7 /* explosion.mp3 */,
 				1E61C0AB21560A9E002340B1 /* float_space.mp3 */,
 			);
 			path = Music;
@@ -125,7 +139,6 @@
 		1E28A01421522C7A005ABD37 /* Miaou Adventures */ = {
 			isa = PBXGroup;
 			children = (
-				1EE72835215BAD1F0045F9DB /* explosion.sks */,
 				1EBB64FC2153B544007FF3AA /* Font */,
 				1E28A01521522C7A005ABD37 /* AppDelegate.swift */,
 				1E28A01921522C7A005ABD37 /* Actions.sks */,
@@ -140,7 +153,7 @@
 				1E28A01F21522C7A005ABD37 /* Main.storyboard */,
 				1E21A65D215235DF008A6668 /* Assets.xcassets */,
 				1E28A02421522C7C005ABD37 /* LaunchScreen.storyboard */,
-				1E28A02721522C7C005ABD37 /* Info.plist */,
+				1E8CADEC215E264200BC53D4 /* Info.plist */,
 			);
 			path = "Miaou Adventures";
 			sourceTree = "<group>";
@@ -166,7 +179,6 @@
 		1EBB64FC2153B544007FF3AA /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				1EDAF17A215B9656006570C1 /* good times rg.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -183,6 +195,7 @@
 				1E28A01021522C7A005ABD37 /* Resources */,
 			);
 			buildRules = (
+				1E038C5C215E28E40019CD68 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -275,13 +288,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E01A27A215E81D400482FE7 /* explosion.mp3 in Resources */,
 				1E28A02121522C7A005ABD37 /* Main.storyboard in Resources */,
+				1E01A27B215E81D400482FE7 /* coin.mp3 in Resources */,
 				1E28A02621522C7C005ABD37 /* LaunchScreen.storyboard in Resources */,
 				1E28A01A21522C7A005ABD37 /* Actions.sks in Resources */,
 				1E61C0AC21560A9E002340B1 /* float_space.mp3 in Resources */,
-				1EE72836215BAD1F0045F9DB /* explosion.sks in Resources */,
 				1E21A65E215235E0008A6668 /* Assets.xcassets in Resources */,
-				1EDAF17B215B9656006570C1 /* good times rg.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +376,14 @@
 				1E28A02521522C7C005ABD37 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1E8CADEC215E264200BC53D4 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1E8CADEB215E264200BC53D4 /* Base */,
+			);
+			name = Info.plist;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -499,7 +520,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "KangaGamesFR.Miaou-Adventures";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -518,7 +539,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "KangaGamesFR.Miaou-Adventures";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -23,15 +23,12 @@ class MainMenuScene: SKScene {
         
         let viewSize:CGSize = view.bounds.size
         
-        //Load background image
-        let bg = SKSpriteNode(imageNamed: "BG")
-        bg.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
-        bg.zPosition = 1
-        self.addChild(bg)
+        //Load background
+        self.backgroundColor = .black
         
         //Load logo image
         let appLogo = SKSpriteNode(imageNamed: "applogo_1")
-        appLogo.position = CGPoint(x: viewSize.width/2, y: viewSize.height * 0.7)
+        appLogo.position = CGPoint(x: viewSize.width/2, y: viewSize.height * 0.75)
         appLogo.zPosition = 2
         self.addChild(appLogo)
         

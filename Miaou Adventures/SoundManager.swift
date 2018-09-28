@@ -42,13 +42,9 @@ class SoundManager : NSObject, AVAudioPlayerDelegate {
                 
                 startPlaying()
             }
-            
             audioPlayer?.prepareToPlay()
             audioPlayer?.play()
-            
             trackPosition = (trackPosition + 1) % SoundManager.tracks.count
-        } else {
-            print("Audio player is already playing!")
         }
     }
     

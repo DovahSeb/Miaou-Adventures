@@ -26,11 +26,17 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var playButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
     var backButton = SKSpriteNode()
+    var Points = SKSpriteNode()
     var Explosion = SKSpriteNode()
     var gameOverText = SKLabelNode()
     var gameOverScore = SKLabelNode()
     var gameOverRestart = SKSpriteNode()
     var gameOverQuit = SKSpriteNode()
+    
+    //Sounds
+    //Credits to: https://www.zapsplat.com for providing the sound effects
+    let coinSound = SKAction.playSoundFileNamed("coin.mp3", waitForCompletion: false)
+    let explosionSound = SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false)
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -40,9 +46,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize){
         super.init(size: size)
-        //let viewSize:CGSize!
-        //viewSize = size
-        
         //Load motionmanager
         motionManager = CMMotionManager()
         motionManager.startAccelerometerUpdates()
@@ -64,17 +67,13 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         //Load stars image
         star1()
-        
-        //stars2 = SKSpriteNode(imageNamed: "stars")
-        //stars2.position = CGPoint(x: 0, y: self.frame.size.height)
-        //stars2.zPosition = 1
-        //self.addChild(stars2)
+        star2()
         
         //Load hero
         addHero()
         
         //Start coins function
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addCoins), SKAction.wait(forDuration: 10.0)])))
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addCoins), SKAction.wait(forDuration: 20.0)])))
         
         //Start meteor function
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addMeteor),
@@ -83,9 +82,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     } //init function
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        //let touch:UITouch = touches.first!
-        //let positionInScene = touch.location(in: self)
-        //let touchedNode = self.atPoint(positionInScene)
         
         if let touch = touches.first{
             if restartButton.contains(touch.location(in: self)){
@@ -151,13 +147,15 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.coinsCategory{
             print("contact")
+            run(coinSound)
             contact.bodyB.node?.removeFromParent()
+            createPoints()
             score += 10
-            
         }
         
         if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.meteorCategory{
             print("contact")
+            run(explosionSound)
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
             createExplosion()

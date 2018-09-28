@@ -34,7 +34,6 @@ extension GamePlayScene{
         restartButton.zPosition = 3
         restartButton.size = CGSize(width: 30, height: 30)
         self.addChild(restartButton)
-        //restartButton.run(SKAction.scale(to: 1.0, duration: 0.5))
     }
     
     func createBackButton(){
@@ -51,7 +50,7 @@ extension GamePlayScene{
         scoreLbl.fontColor = SKColor.white
         scoreLbl.zPosition = 3
         scoreLbl.fontSize = 20
-        scoreLbl.fontName = "Good Times"
+        scoreLbl.fontName = "Verdana"
         self.addChild(scoreLbl)
         let delay = SKAction.wait(forDuration: 0.5)
         let incrementScore = SKAction.run ({
@@ -63,11 +62,20 @@ extension GamePlayScene{
     
     func star1(){
         stars1 = SKSpriteNode(imageNamed: "stars")
-        stars1.position = CGPoint(x: 0, y: 0)
+        stars1.position = CGPoint(x: frame.size.width, y: frame.size.height)
         stars1.zPosition = 1
-        self.addChild(stars1)
         let scrollDown = SKAction.repeatForever(SKAction.move(by: CGVector(dx: 0, dy: -self.frame.size.height), duration: 5))
         stars1.run(scrollDown)
+        self.addChild(stars1)
+    }
+    
+    func star2(){
+        stars2 = SKSpriteNode(imageNamed: "stars")
+        stars2.position = CGPoint(x: 0, y: stars1.size.height - 1)
+        stars2.zPosition = 1
+        let scrollDown = SKAction.repeatForever(SKAction.move(by: CGVector(dx: 0, dy: -self.frame.size.height), duration: 5))
+        stars2.run(scrollDown)
+        self.addChild(stars2)
     }
     
     func addHero(){
@@ -135,6 +143,19 @@ extension GamePlayScene{
         meteor.run(SKAction.sequence([actionMove, actionMoveDone]))
     }
     
+    func createPoints(){
+        let PointsTexture = SKTexture(imageNamed: "points")
+        let animatePoints = SKAction.sequence([
+            SKAction.wait(forDuration: 0.75, withRange: 0.2),
+            SKAction.animate(with: [PointsTexture], timePerFrame: 0.05)
+            ])
+        let Points = SKSpriteNode(texture: PointsTexture)
+        Points.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.9)
+        Points.run(animatePoints)
+        addChild(Points)
+        Points.run(animatePoints, completion : {Points.removeFromParent()})
+    }
+    
     func createExplosion(){
         let ExplosionTexture = SKTexture(imageNamed: "explosion")
         let animateExplosion = SKAction.sequence([
@@ -155,18 +176,18 @@ extension GamePlayScene{
         gameOverText.fontColor = SKColor.white
         gameOverText.zPosition = 3
         gameOverText.fontSize = 30
-        gameOverText.fontName = "Good Times"
+        gameOverText.fontName = "Verdana"
         self.addChild(gameOverText)
     }
     
     func createGameOverScore(){
         gameOverScore = SKLabelNode()
         gameOverScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.7)
-        gameOverScore.text = "Your Score: \(score)"
+        gameOverScore.text = "Votre Score: \(score)"
         gameOverScore.fontColor = SKColor.white
         gameOverScore.zPosition = 3
         gameOverScore.fontSize = 20
-        gameOverScore.fontName = "Good Times"
+        gameOverScore.fontName = "Verdana"
         self.addChild(gameOverScore)
     }
     
@@ -248,15 +269,14 @@ extension ScoreScene{
         highScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         let defaults = UserDefaults.standard
         if let highestScore = defaults.object(forKey: "highestScore"){
-            highScore.text = "High Score: \(highestScore)"
+            highScore.text = "Meilleur Score: \(highestScore)"
         } else {
-            highScore.text = "High Score: 0"
+            highScore.text = "Meilleur Score: 0"
         }
         highScore.zPosition = 2
         highScore.fontSize = 30
-        highScore.fontName = "Good Times"
+        highScore.fontName = "Verdana"
         self.addChild(highScore)
-        //return highScore
     }
 }
 
@@ -266,13 +286,25 @@ extension MainMenuScene{
     func createResetScore(){
         resetScore = SKLabelNode()
         resetScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/10)
-        resetScore.text = "Reset Score"
+        resetScore.text = "Réinitialiser Score"
         resetScore.zPosition = 2
         resetScore.fontSize = 15
-        resetScore.fontName = "Good Times"
+        resetScore.fontName = "Verdana"
         self.addChild(resetScore)
     }
     
+}
+
+extension CreditsScene{
+    
+    //back button
+    func createCreditsBack(){
+        creditsBackBtn = SKSpriteNode(imageNamed: "back")
+        creditsBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.94)
+        creditsBackBtn.zPosition = 2
+        self.addChild(creditsBackBtn)
+        creditsBackBtn.name = "creditsBack"
+    }
 }
 
 
