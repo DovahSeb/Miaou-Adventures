@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "stars@1x.png",
+      "filename" : "enemy.png",
       "scale" : "1x"
     },
     {

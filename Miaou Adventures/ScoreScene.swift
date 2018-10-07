@@ -12,6 +12,7 @@ import SpriteKit
 class ScoreScene: SKScene {
     
     //Declare Variables
+    var background = SKSpriteNode()
     var highScore = SKLabelNode()
     var scoreBackBtn = SKSpriteNode()
 
@@ -22,11 +23,14 @@ class ScoreScene: SKScene {
     
     override init(size: CGSize){
         super.init(size: size)
-        //let viewSize:CGSize!
-        //viewSize = size
+        let viewSize:CGSize!
+        viewSize = size
         
-        //Load Background
-        self.backgroundColor = .black
+        //Load background
+        background = SKSpriteNode(imageNamed: "BG")
+        background.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
+        background.zPosition = 1
+        self.addChild(background)
         
         //Add highscore
         createHighscoreLabel()

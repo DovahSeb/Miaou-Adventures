@@ -10,10 +10,12 @@ import Foundation
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import UIKit
 
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     //Declare variables
+    var banner = SKShapeNode()
     var scoreLbl = SKLabelNode()
     var score = 0
     var stars1 = SKSpriteNode()
@@ -46,12 +48,16 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize){
         super.init(size: size)
+        
         //Load motionmanager
         motionManager = CMMotionManager()
         motionManager.startAccelerometerUpdates()
         
         //scene
         createScene()
+        
+        //banner
+        createBanner()
         
         //pause
         createPauseButton()
@@ -160,7 +166,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             contact.bodyB.node?.removeFromParent()
             createExplosion()
             gameOver()
-            
         }
     }
     
@@ -175,7 +180,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             stars2.position.y = self.frame.size.height
         }
         if let accelerometerData = motionManager.accelerometerData {
-            hero.physicsBody!.applyForce(CGVector(dx: 120 * CGFloat(accelerometerData.acceleration.x), dy: 120 * CGFloat(accelerometerData.acceleration.y)))
+            hero.physicsBody!.applyForce(CGVector(dx: 150 * CGFloat(accelerometerData.acceleration.x), dy: 120 * CGFloat(accelerometerData.acceleration.y)))
         }
     }
 } //class end
