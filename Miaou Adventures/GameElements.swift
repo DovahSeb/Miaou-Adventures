@@ -41,7 +41,6 @@ extension GamePlayScene{
         pauseButton = SKSpriteNode(imageNamed: "pause")
         pauseButton.position = CGPoint(x: self.frame.width * 0.8, y: self.frame.height * 0.94)
         pauseButton.zPosition = 4
-        pauseButton.size = CGSize(width: 30, height: 30)
         self.addChild(pauseButton)
     }
     
@@ -49,7 +48,6 @@ extension GamePlayScene{
         restartButton = SKSpriteNode(imageNamed: "reset")
         restartButton.position = CGPoint(x: self.frame.width * 0.9, y: self.frame.height * 0.94)
         restartButton.zPosition = 4
-        restartButton.size = CGSize(width: 30, height: 30)
         self.addChild(restartButton)
     }
     
@@ -243,10 +241,10 @@ extension GamePlayScene{
         self.removeAllActions()
         score = 0
         createScene()
-        createBanner()
-        createPauseButton()
-        createRestartButton()
-        createScoreLabel()
+        //createBanner()
+        //createPauseButton()
+        //createRestartButton()
+        //createScoreLabel()
         //star1()
         //star2()
         //addHero()
@@ -282,7 +280,6 @@ extension ScoreScene{
         scoreBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.94)
         scoreBackBtn.zPosition = 2
         self.addChild(scoreBackBtn)
-        scoreBackBtn.name = "scoreBack"
     }
     
     
@@ -307,25 +304,46 @@ extension MainMenuScene{
     //reset score
     func createResetScore(){
         resetScore = SKLabelNode()
-        resetScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/10)
+        resetScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/11)
         resetScore.text = "Réinitialiser Score"
         resetScore.zPosition = 2
         resetScore.fontSize = 15
-        resetScore.fontName = "Verdana"
+        resetScore.fontName = "Verdana Bold"
         self.addChild(resetScore)
     }
     
 }
 
-extension CreditsScene{
+extension HowToScene{
     
     //back button
-    func createCreditsBack(){
-        creditsBackBtn = SKSpriteNode(imageNamed: "back")
-        creditsBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.94)
-        creditsBackBtn.zPosition = 2
-        self.addChild(creditsBackBtn)
-        creditsBackBtn.name = "creditsBack"
+    func createHowToBack(){
+        howToBackBtn = SKSpriteNode(imageNamed: "back")
+        howToBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.94)
+        howToBackBtn.zPosition = 2
+        self.addChild(howToBackBtn)
+    }
+    
+    //how to play
+    func createHowTo(){
+        howTo = SKLabelNode()
+        howTo.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.88)
+        howTo.text = "Comment jouer?"
+        howTo.zPosition = 2
+        howTo.fontSize = 25
+        howTo.fontName = "Verdana Bold"
+        self.addChild(howTo)
+    }
+    
+    //move your hero
+    func createDirection(){
+        direction = SKLabelNode()
+        direction.position = CGPoint(x: self.frame.size.width/2, y: self.frame.height * 0.75)
+        direction.text = "Déplacer: Incliner votre portable"
+        direction.zPosition = 2
+        direction.fontSize = 20
+        direction.fontName = "Verdana"
+        self.addChild(direction)
     }
 }
 

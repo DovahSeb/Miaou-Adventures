@@ -41,16 +41,23 @@ class ScoreScene: SKScene {
     } //init function
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        let touch:UITouch = touches.first!
-        let positionInScene = touch.location(in: self)
-        let touchedNode = self.atPoint(positionInScene)
         
-        if let name = touchedNode.name
-        {
-            if name == "scoreBack"{
+        if let touch = touches.first{
+            
+            if scoreBackBtn.contains(touch.location(in: self)){
+                scoreBackBtn.setScale(1.2)
                 let scene = MainMenuScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .right, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first{
+            
+            if scoreBackBtn.contains(touch.location(in: self)){
+                scoreBackBtn.setScale(1)
             }
         }
     }

@@ -14,7 +14,7 @@ class MainMenuScene: SKScene {
     var background = SKSpriteNode()
     var play = SKSpriteNode()
     var score = SKSpriteNode()
-    var credits = SKSpriteNode()
+    var howto = SKSpriteNode()
     
     let soundButtonOn = SKTexture(imageNamed: "sound_on")
     let soundButtonOff = SKTexture(imageNamed: "sound_off")
@@ -56,15 +56,14 @@ class MainMenuScene: SKScene {
         //score.name = "score"
         
         // Load credits button
-        credits = SKSpriteNode(imageNamed: "credits")
-        credits.position = CGPoint(x: viewSize.width/6, y: viewSize.height/10)
-        credits.zPosition = 2
-        self.addChild(credits)
-        credits.name = "credits"
+        howto = SKSpriteNode(imageNamed: "howto")
+        howto.position = CGPoint( x: viewSize.width/1.2, y: viewSize.height/10)
+        howto.zPosition = 2
+        self.addChild(howto)
         
         // Load sound on&off Button
         soundButton = SKSpriteNode(texture: SoundManager.sharedInstance.isMuted ?soundButtonOff:soundButtonOn)
-        soundButton.position = CGPoint(x: viewSize.width/1.2, y: viewSize.height/10)
+        soundButton.position = CGPoint(x: viewSize.width/6, y: viewSize.height/10)
         soundButton.zPosition = 2
         addChild(soundButton)
         
@@ -100,19 +99,22 @@ class MainMenuScene: SKScene {
         if let touch = touches.first {
             
             if play.contains(touch.location(in: self)){
+                play.setScale(1.2)
                 let scene = GamePlayScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }
             
             if score.contains(touch.location(in: self)){
+                score.setScale(1.2)
                 let scene = ScoreScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }
             
-            if credits.contains(touch.location(in: self)){
-                let scene = CreditsScene(size: self.size)
+            if howto.contains(touch.location(in: self)){
+                howto.setScale(1.2)
+                let scene = HowToScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }
@@ -124,6 +126,7 @@ class MainMenuScene: SKScene {
             }
             
             if resetScore.contains(touch.location(in: self)){
+                resetScore.setScale(1.2)
                 let defaults = UserDefaults.standard
                 defaults.set(0, forKey: "highestScore")
                 defaults.synchronize()
@@ -137,10 +140,25 @@ class MainMenuScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-        
+        /*Called when a touch ends*/
         if let touch = touches.first {
-         if selectedButton == soundButton {
+            if play.contains(touch.location(in: self)){
+                play.setScale(1)
+            }
+            
+            if score.contains(touch.location(in: self)){
+                score.setScale(1)
+            }
+            
+            if howto.contains(touch.location(in: self)){
+                howto.setScale(1)
+            }
+            
+            if resetScore.contains(touch.location(in: self)){
+                resetScore.setScale(1)
+            }
+            
+            if selectedButton == soundButton {
                 if (soundButton.contains(touch.location(in: self))) {
                     handleSoundButtonClick()
                 }
