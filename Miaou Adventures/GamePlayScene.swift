@@ -18,11 +18,12 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var banner = SKShapeNode()
     var scoreLbl = SKLabelNode()
     var score = 0
+    //var fuelLbl = SKLabelNode()
+    //var fuel = 100
     var stars1 = SKSpriteNode()
     var stars2 = SKSpriteNode()
     var hero = SKSpriteNode()
     var coins = SKSpriteNode()
-    var motionManager = CMMotionManager()
     var meteor = SKSpriteNode()
     var pauseButton = SKSpriteNode()
     var playButton = SKSpriteNode()
@@ -34,6 +35,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var gameOverScore = SKLabelNode()
     var gameOverRestart = SKSpriteNode()
     var gameOverQuit = SKSpriteNode()
+    var motionManager = CMMotionManager()
     
     //Sounds
     //Credits to: https://www.zapsplat.com for providing the sound effects
@@ -42,8 +44,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-      
-        
     } // required init
     
     override init(size: CGSize){
@@ -71,6 +71,9 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         //Score label
         createScoreLabel()
         
+        //Fuel capacity
+        
+        
         //Load stars image
         star1()
         star2()
@@ -79,18 +82,49 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         addHero()
         
         //Start coins function
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addCoins), SKAction.wait(forDuration: 20.0)])))
+        func coinSpawn(){
+            let wait = SKAction.wait(forDuration: 10)
+            let spawn = SKAction.run(addCoins)
+            let sequence = SKAction.sequence([wait, spawn])
+            run(SKAction.repeatForever(sequence))
+        }; coinSpawn()
         
         //Start meteor function
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(addMeteor),
-                                                      SKAction.wait(forDuration: 1.0)])))
+        func meteorSpawn(){
+            let spawn = SKAction.run(addMeteor)
+            let wait = SKAction.wait(forDuration: 1.0)
+            let sequence = SKAction.sequence([spawn, wait])
+            run(SKAction.repeatForever(sequence))
+        }; meteorSpawn()
         
-    } //init function
+    }//init function
+    
+    override func didMove(to view: SKView) {
+        
+        //double tap
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        tap.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func doubleTapped(_ sender: UITapGestureRecognizer) {
+        print("tap")
+        if let childCoin = self.childNode(withName: "coin") as? SKSpriteNode {
+            run(coinSound)
+            createPoints()
+            score += 10
+            childCoin.removeFromParent()
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         
         if let touch = touches.first{
+            
             if restartButton.contains(touch.location(in: self)){
+                restartButton.setScale(1.2)
                 let scene = GamePlayScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
@@ -98,12 +132,14 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if backButton.contains(touch.location(in: self)){
+                backButton.setScale(1.2)
                 let scene = MainMenuScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .right, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }
             
             if gameOverRestart.contains(touch.location(in: self)){
+                gameOverRestart.setScale(1.2)
                 let scene = GamePlayScene(size: self.size)
                 self.view?.presentScene(scene)
                 let defaults = UserDefaults.standard
@@ -119,6 +155,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if gameOverQuit.contains(touch.location(in: self)){
+                gameOverQuit.setScale(1.2)
                 let scene = MainMenuScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .right, duration: 1.0)
                 self.view?.presentScene(scene, transition:reveal)
@@ -136,6 +173,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         if let touch = touches.first{
             if pauseButton.contains(touch.location(in: self)){
+                pauseButton.setScale(1.2)
                 if self.isPaused == false{
                     self.isPaused = true
                     pauseButton.texture = SKTexture(imageNamed: "play_1")
@@ -147,17 +185,35 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //Called when there's a move touch
+       
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //Called when a touch ends
+        if let touch = touches.first{
+            if restartButton.contains(touch.location(in: self)){
+                restartButton.setScale(1.0)
+            }
+            if backButton.contains(touch.location(in: self)){
+                backButton.setScale(1.0)
+            }
+            if gameOverRestart.contains(touch.location(in: self)){
+                gameOverRestart.setScale(1.0)
+            }
+            if gameOverQuit.contains(touch.location(in: self)){
+                gameOverQuit.setScale(1.0)
+            }
+            if pauseButton.contains(touch.location(in: self)){
+                pauseButton.setScale(1.0)
+            }
+        }
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
-        
-        if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.coinsCategory{
-            print("contact")
-            run(coinSound)
-            contact.bodyB.node?.removeFromParent()
-            createPoints()
-            score += 10
-        }
         
         if firstBody.categoryBitMask == CollisionBitMask.heroCategory && secondBody.categoryBitMask == CollisionBitMask.meteorCategory{
             print("contact")
@@ -168,7 +224,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             gameOver()
         }
     }
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered

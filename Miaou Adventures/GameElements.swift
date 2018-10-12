@@ -75,6 +75,7 @@ extension GamePlayScene{
         scoreLbl.run(SKAction.repeatForever(SKAction.sequence([delay,incrementScore])))
     }
     
+    
     func star1(){
         stars1 = SKSpriteNode(imageNamed: "stars")
         stars1.position = CGPoint(x: self.size.width, y: self.size.height)
@@ -116,8 +117,6 @@ extension GamePlayScene{
         let actualX = random(min: size.width/2, max: size.width - coins.size.width/2)
         coins.position = CGPoint(x: actualX, y: size.height + size.height/2)
         coins.zPosition = 2
-        // Determine speed of the coins
-        let actualDuration = random(min: CGFloat(3.0), max: CGFloat(3.5))
         //Add physics
         coins.physicsBody = SKPhysicsBody(circleOfRadius: max(coins.size.width/2, coins.size.height/2))
         coins.physicsBody?.usesPreciseCollisionDetection = true
@@ -127,9 +126,10 @@ extension GamePlayScene{
         coins.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
         // Create the actions
         let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -coins.size.height),
-                                       duration: TimeInterval(actualDuration))
+                                       duration: TimeInterval(3.0))
         let actionMoveDone = SKAction.removeFromParent()
         coins.run(SKAction.sequence([actionMove, actionMoveDone]))
+        coins.name = "coin"
         self.addChild(coins)
     }
     
@@ -220,6 +220,7 @@ extension GamePlayScene{
         self.addChild(gameOverQuit)
     }
     
+    //called when a new scene is created
     func createScene(){
         //Add physics to the scene
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -252,6 +253,7 @@ extension GamePlayScene{
         //addMeteor()
     }
     
+    //called when hero is destroyed
     func gameOver(){
         backButton.removeFromParent()
         scoreLbl.removeFromParent()
@@ -262,6 +264,7 @@ extension GamePlayScene{
         createGameOverScore()
         createGameOverRestart()
         createGameOverQuit()
+        self.view?.gestureRecognizers?.removeAll()
     }
     
     func random() -> CGFloat {

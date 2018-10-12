@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-        let scene = MainMenuScene(size: view.bounds.size)
+        let mainScene = MainMenuScene(size: view.bounds.size)
         
         // Configure the view.
         
@@ -29,9 +29,9 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         
         /* Set the scale mode to scale to fit the window */
-        scene.scaleMode = .resizeFill
+        mainScene.scaleMode = .resizeFill
         
-        skView.presentScene(scene)
+        skView.presentScene(mainScene)
         SoundManager.sharedInstance.startPlaying()
         
         }

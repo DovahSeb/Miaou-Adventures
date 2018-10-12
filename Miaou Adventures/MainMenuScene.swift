@@ -33,7 +33,6 @@ class MainMenuScene: SKScene {
         background.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
         background.zPosition = 1
         self.addChild(background)
-        //self.backgroundColor = .black
         
         //Load logo image
         let appLogo = SKSpriteNode(imageNamed: "applogo_1")
@@ -55,7 +54,7 @@ class MainMenuScene: SKScene {
         self.addChild(score)
         //score.name = "score"
         
-        // Load credits button
+        // Load howto button
         howto = SKSpriteNode(imageNamed: "howto")
         howto.position = CGPoint( x: viewSize.width/1.2, y: viewSize.height/10)
         howto.zPosition = 2
