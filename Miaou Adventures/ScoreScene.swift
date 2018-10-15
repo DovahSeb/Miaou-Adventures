@@ -15,6 +15,7 @@ class ScoreScene: SKScene {
     var background = SKSpriteNode()
     var highScore = SKLabelNode()
     var scoreBackBtn = SKSpriteNode()
+    var mapView = SKSpriteNode()
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -38,6 +39,9 @@ class ScoreScene: SKScene {
         //Add back button
         createScoreBack()
         
+        //Add map button
+        createMapBtn()
+        
     } //init function
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -47,6 +51,13 @@ class ScoreScene: SKScene {
             if scoreBackBtn.contains(touch.location(in: self)){
                 scoreBackBtn.setScale(1.2)
                 let scene = MainMenuScene(size: self.size)
+                let reveal = SKTransition.reveal(with: .right, duration: 1.0)
+                self.view?.presentScene(scene, transition: reveal)
+            }
+            
+            if mapView.contains(touch.location(in: self)){
+                mapView.setScale(1.2)
+                let scene = MapView(size: self.size)
                 let reveal = SKTransition.reveal(with: .right, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }

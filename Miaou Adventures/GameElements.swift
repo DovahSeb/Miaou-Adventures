@@ -302,6 +302,13 @@ extension ScoreScene{
         highScore.fontName = "Verdana"
         self.addChild(highScore)
     }
+    
+    func createMapBtn(){
+        mapView = SKSpriteNode(imageNamed: "map")
+        mapView.position = CGPoint(x: self.frame.width/2, y: self.frame.height/4)
+        mapView.zPosition = 2
+        self.addChild(mapView)
+    }
 }
 
 extension MainMenuScene{

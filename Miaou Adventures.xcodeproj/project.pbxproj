@@ -10,6 +10,8 @@
 		1E01A27A215E81D400482FE7 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E01A278215E81D300482FE7 /* explosion.mp3 */; };
 		1E01A27B215E81D400482FE7 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E01A279215E81D300482FE7 /* coin.mp3 */; };
 		1E0A6E4F215547B4008C380C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0A6E4E215547B4008C380C /* SoundManager.swift */; };
+		1E1AC06A2175088D00547811 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1AC0692175088D00547811 /* MapView.swift */; };
+		1E1AC06D2175287500547811 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1AC06C2175287500547811 /* MapKit.framework */; };
 		1E21A65E215235E0008A6668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E21A65D215235DF008A6668 /* Assets.xcassets */; };
 		1E28A01621522C7A005ABD37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E28A01521522C7A005ABD37 /* AppDelegate.swift */; };
 		1E28A01A21522C7A005ABD37 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1E28A01921522C7A005ABD37 /* Actions.sks */; };
@@ -60,6 +62,8 @@
 		1E01A278215E81D300482FE7 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		1E01A279215E81D300482FE7 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
 		1E0A6E4E215547B4008C380C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		1E1AC0692175088D00547811 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		1E1AC06C2175287500547811 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1E21A65D215235DF008A6668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E28A01221522C7A005ABD37 /* Miaou Adventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Miaou Adventures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E28A01521522C7A005ABD37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E1AC06D2175287500547811 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +124,14 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
+		1E1AC06B2175287500547811 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E1AC06C2175287500547811 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1E28A00921522C7A005ABD37 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +139,7 @@
 				1E28A02F21522C7C005ABD37 /* Miaou AdventuresTests */,
 				1E28A03A21522C7C005ABD37 /* Miaou AdventuresUITests */,
 				1E28A01321522C7A005ABD37 /* Products */,
+				1E1AC06B2175287500547811 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +166,7 @@
 				1E9C51FD215A6FFC0046F780 /* ScoreScene.swift */,
 				1EBB65002153C5CF007FF3AA /* GamePlayScene.swift */,
 				1E9C51FF215A804E0046F780 /* GameElements.swift */,
+				1E1AC0692175088D00547811 /* MapView.swift */,
 				1E28A01D21522C7A005ABD37 /* GameViewController.swift */,
 				1E28A01F21522C7A005ABD37 /* Main.storyboard */,
 				1E21A65D215235DF008A6668 /* Assets.xcassets */,
@@ -256,6 +271,11 @@
 				TargetAttributes = {
 					1E28A01121522C7A005ABD37 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					1E28A02B21522C7C005ABD37 = {
 						CreatedOnToolsVersion = 10.0;
@@ -332,6 +352,7 @@
 				1E9C5200215A804E0046F780 /* GameElements.swift in Sources */,
 				1E28A01E21522C7A005ABD37 /* GameViewController.swift in Sources */,
 				1E28A01621522C7A005ABD37 /* AppDelegate.swift in Sources */,
+				1E1AC06A2175088D00547811 /* MapView.swift in Sources */,
 				1E0A6E4F215547B4008C380C /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
