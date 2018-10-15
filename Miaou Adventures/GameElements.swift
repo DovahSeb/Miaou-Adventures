@@ -8,6 +8,8 @@
 
 import Foundation
 import SpriteKit
+import UIKit
+
 
 //Credits to: https://icons8.com for provinding the icons
 
@@ -187,7 +189,7 @@ extension GamePlayScene{
     func createGameOverText(){
         gameOverText = SKLabelNode()
         gameOverText.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.8)
-        gameOverText.text = "Game Over"
+        gameOverText.text = NSLocalizedString("gameover", comment: "")
         gameOverText.fontColor = SKColor.white
         gameOverText.zPosition = 3
         gameOverText.fontSize = 30
@@ -198,7 +200,7 @@ extension GamePlayScene{
     func createGameOverScore(){
         gameOverScore = SKLabelNode()
         gameOverScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.7)
-        gameOverScore.text = "Votre Score: \(score)"
+        gameOverScore.text = NSLocalizedString("yourscore", comment: "") + "\(score)"
         gameOverScore.fontColor = SKColor.white
         gameOverScore.zPosition = 3
         gameOverScore.fontSize = 20
@@ -291,9 +293,9 @@ extension ScoreScene{
         highScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         let defaults = UserDefaults.standard
         if let highestScore = defaults.object(forKey: "highestScore"){
-            highScore.text = "Meilleur Score: \(highestScore)"
+            highScore.text = NSLocalizedString("highscore", comment: "") + "\(highestScore)"
         } else {
-            highScore.text = "Meilleur Score: 0"
+            highScore.text = NSLocalizedString("highscore", comment: "") + "0"
         }
         highScore.zPosition = 2
         highScore.fontSize = 30
@@ -308,7 +310,7 @@ extension MainMenuScene{
     func createResetScore(){
         resetScore = SKLabelNode()
         resetScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/11)
-        resetScore.text = "Réinitialiser Score"
+        resetScore.text = NSLocalizedString("reinitscore", comment: "")
         resetScore.zPosition = 2
         resetScore.fontSize = 15
         resetScore.fontName = "Verdana Bold"
@@ -331,7 +333,7 @@ extension HowToScene{
     func createHowTo(){
         howTo = SKLabelNode()
         howTo.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.88)
-        howTo.text = "Comment jouer?"
+        howTo.text = NSLocalizedString("howto", comment: "")
         howTo.zPosition = 2
         howTo.fontSize = 25
         howTo.fontName = "Verdana Bold"
@@ -342,7 +344,7 @@ extension HowToScene{
     func createDirection(){
         direction = SKLabelNode()
         direction.position = CGPoint(x: self.frame.size.width/2, y: self.frame.height * 0.75)
-        direction.text = "Déplacer: Incliner votre portable"
+        direction.text = NSLocalizedString("move", comment: "")
         direction.zPosition = 2
         direction.fontSize = 20
         direction.fontName = "Verdana"

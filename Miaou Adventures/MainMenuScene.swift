@@ -67,14 +67,14 @@ class MainMenuScene: SKScene {
         addChild(soundButton)
         
         //Reset Score
-        createResetScore()
+        //createResetScore()
         
     }
     
     
     override func sceneDidLoad() {
-
-        
+        //Reset Score
+        createResetScore()
     }
     
     func touchBegan(toPoint pos : CGPoint){

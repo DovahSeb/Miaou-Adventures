@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Miaou Adventures
+
+  Created by Sebastien Larue on 15/10/2018.
+  Copyright © 2018 KangaGames. All rights reserved.
+*/
+
+"reinitscore" = "Réinitialiser Score";
+"yourscore" = "Votre Score: ";
+"gameover" = "Game Over";
+"highscore" = "Meilleur Score: ";
+"howto" = "Comment Jouer";
+"move" = "Déplacer: Incliner votre portable";
