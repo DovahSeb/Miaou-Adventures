@@ -10,6 +10,9 @@
 "yourscore" = "Your Score: ";
 "gameover" = "Game Over";
 "highscore" = "High Score: ";
-"howto" = "How To Play";
-"move" = "Move: Tilt your phone";
+"howto" = "How To Play?";
+"move" = "Tilt your phone";
+"meteor" = "Avoid to survive";
+"bonus" = "Double tap for 10pts";
+"map" = "View score position";
 

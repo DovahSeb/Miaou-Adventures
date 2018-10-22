@@ -309,6 +309,13 @@ extension ScoreScene{
         mapView.zPosition = 2
         self.addChild(mapView)
     }
+    
+    func createCameraBtn(){
+        cameraView = SKSpriteNode(imageNamed: "camera")
+        cameraView.position = CGPoint(x: self.frame.width/2, y: self.frame.height/6)
+        cameraView.zPosition = 2
+        self.addChild(cameraView)
+    }
 }
 
 extension MainMenuScene{
@@ -326,37 +333,5 @@ extension MainMenuScene{
     
 }
 
-extension HowToScene{
-    
-    //back button
-    func createHowToBack(){
-        howToBackBtn = SKSpriteNode(imageNamed: "back")
-        howToBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.94)
-        howToBackBtn.zPosition = 2
-        self.addChild(howToBackBtn)
-    }
-    
-    //how to play
-    func createHowTo(){
-        howTo = SKLabelNode()
-        howTo.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.88)
-        howTo.text = NSLocalizedString("howto", comment: "")
-        howTo.zPosition = 2
-        howTo.fontSize = 25
-        howTo.fontName = "Verdana Bold"
-        self.addChild(howTo)
-    }
-    
-    //move your hero
-    func createDirection(){
-        direction = SKLabelNode()
-        direction.position = CGPoint(x: self.frame.size.width/2, y: self.frame.height * 0.75)
-        direction.text = NSLocalizedString("move", comment: "")
-        direction.zPosition = 2
-        direction.fontSize = 20
-        direction.fontName = "Verdana"
-        self.addChild(direction)
-    }
-}
 
 

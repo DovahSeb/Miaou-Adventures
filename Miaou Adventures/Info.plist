@@ -6,6 +6,10 @@
     <string>Will you allow this app to always know your location?</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>Do you allow this app to know your current location?</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Do you allow this app to take pictures?</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Do you allow this app to save pictures?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

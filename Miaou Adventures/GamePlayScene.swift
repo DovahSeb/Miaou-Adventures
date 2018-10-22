@@ -18,8 +18,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var banner = SKShapeNode()
     var scoreLbl = SKLabelNode()
     var score = 0
-    //var fuelLbl = SKLabelNode()
-    //var fuel = 100
     var stars1 = SKSpriteNode()
     var stars2 = SKSpriteNode()
     var hero = SKSpriteNode()

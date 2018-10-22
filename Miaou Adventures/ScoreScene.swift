@@ -16,6 +16,7 @@ class ScoreScene: SKScene {
     var highScore = SKLabelNode()
     var scoreBackBtn = SKSpriteNode()
     var mapView = SKSpriteNode()
+    var cameraView = SKSpriteNode()
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,6 +43,9 @@ class ScoreScene: SKScene {
         //Add map button
         createMapBtn()
         
+        //Add camera button
+        createCameraBtn()
+        
     } //init function
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -61,6 +65,20 @@ class ScoreScene: SKScene {
                 let reveal = SKTransition.reveal(with: .right, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
             }
+            
+            if cameraView.contains(touch.location(in: self)){
+                cameraView.setScale(1.2)
+                //let scene = CameraView(size: self.size)
+                //let reveal = SKTransition.reveal(with: .right, duration: 1.0)
+                //self.view?.presentScene(scene, transition: reveal)
+                //let currentViewController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+                //currentViewController.present(ViewController(), animated: false, completion: nil)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier :"Camera")
+                let currentViewController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+                
+                currentViewController.present(viewController, animated: false, completion: nil)
+            }
         }
     }
     
@@ -69,6 +87,14 @@ class ScoreScene: SKScene {
             
             if scoreBackBtn.contains(touch.location(in: self)){
                 scoreBackBtn.setScale(1)
+            }
+            
+            if mapView.contains(touch.location(in: self)){
+                mapView.setScale(1.0)
+            }
+            
+            if cameraView.contains(touch.location(in: self)){
+                cameraView.setScale(1.0)
             }
         }
     }

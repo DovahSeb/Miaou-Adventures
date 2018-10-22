@@ -18,7 +18,9 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
     
     override func didMove(to view: SKView) {
         
+        //create the map view
         createMapView()
+        //function to determine the location
         determineCurrentLocation()
      
     }

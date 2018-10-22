@@ -10,5 +10,8 @@
 "yourscore" = "Votre Score: ";
 "gameover" = "Game Over";
 "highscore" = "Meilleur Score: ";
-"howto" = "Comment Jouer";
-"move" = "Déplacer: Incliner votre portable";
+"howto" = "Comment Jouer?";
+"move" = "Incliner votre portable";
+"meteor" = "Eviter afin de survivre";
+"bonus" = "Double tap pour 10pts";
+"map" = "Visualiser la position du score";

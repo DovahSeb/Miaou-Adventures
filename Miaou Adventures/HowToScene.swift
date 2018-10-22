@@ -15,10 +15,14 @@ class HowToScene: SKScene {
     var background = SKSpriteNode()
     var howToBackBtn = SKSpriteNode()
     var howTo = SKLabelNode()
+    var directionImg = SKSpriteNode()
     var direction = SKLabelNode()
-    var coin = SKSpriteNode()
-    var meteor = SKSpriteNode()
-    var bonus = SKSpriteNode()
+    var coinImg = SKSpriteNode()
+    var meteorImg = SKSpriteNode()
+    var meteorTxt = SKLabelNode()
+    var coinTxt = SKLabelNode()
+    var mapImg = SKSpriteNode()
+    var mapTxt = SKLabelNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,8 +46,29 @@ class HowToScene: SKScene {
         //Add how to text
         createHowTo()
         
+        //Add direction sprite
+        createDirectionImg()
+        
         //Add direction text
         createDirection()
+        
+        //Add meteor sprite
+        createMeteorImg()
+        
+        //Add meteor text
+        createMeteorTxt()
+        
+        //Add coin sprite
+        createCoinImg()
+        
+        //Add coin text
+        createCoinTxt()
+        
+        //Add map img
+        createMapImg()
+        
+        //Add map text
+        createMapTxt()
         
     } //init function
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
