@@ -14,6 +14,7 @@ import UIKit
 
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
+    //credits to https://icons8.com for providing the icons
     //Declare variables
     var banner = SKShapeNode()
     var scoreLbl = SKLabelNode()
@@ -33,6 +34,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var gameOverScore = SKLabelNode()
     var gameOverRestart = SKSpriteNode()
     var gameOverQuit = SKSpriteNode()
+    var gameOverMap = SKSpriteNode()
     var motionManager = CMMotionManager()
     
     //Sounds
@@ -121,6 +123,17 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         if let touch = touches.first{
             
+            if pauseButton.contains(touch.location(in: self)){
+                pauseButton.setScale(1.2)
+                if self.isPaused == false{
+                    self.isPaused = true
+                    pauseButton.texture = SKTexture(imageNamed: "play_1")
+                } else {
+                    self.isPaused = false
+                    pauseButton.texture = SKTexture(imageNamed: "pause")
+                }
+            }
+            
             if restartButton.contains(touch.location(in: self)){
                 restartButton.setScale(1.2)
                 let scene = GamePlayScene(size: self.size)
@@ -167,30 +180,26 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
                     defaults.set(0, forKey: "highestScore")
                 }
             }
-        }
-        
-        if let touch = touches.first{
-            if pauseButton.contains(touch.location(in: self)){
-                pauseButton.setScale(1.2)
-                if self.isPaused == false{
-                    self.isPaused = true
-                    pauseButton.texture = SKTexture(imageNamed: "play_1")
-                } else {
-                    self.isPaused = false
-                    pauseButton.texture = SKTexture(imageNamed: "pause")
-                }
+            
+            if gameOverMap.contains(touch.location(in: self)){
+                gameOverMap.setScale(1.2)
+                let scene = MapView(size: self.size)
+                let reveal = SKTransition.reveal(with: .right, duration: 1.0)
+                self.view?.presentScene(scene, transition: reveal)
             }
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         //Called when there's a move touch
-       
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //Called when a touch ends
         if let touch = touches.first{
+            if pauseButton.contains(touch.location(in: self)){
+                pauseButton.setScale(1.0)
+            }
             if restartButton.contains(touch.location(in: self)){
                 restartButton.setScale(1.0)
             }
@@ -203,8 +212,8 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             if gameOverQuit.contains(touch.location(in: self)){
                 gameOverQuit.setScale(1.0)
             }
-            if pauseButton.contains(touch.location(in: self)){
-                pauseButton.setScale(1.0)
+            if gameOverMap.contains(touch.location(in: self)){
+                gameOverMap.setScale(1.0)
             }
         }
     }

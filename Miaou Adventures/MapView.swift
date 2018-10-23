@@ -62,7 +62,7 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-        myAnnotation.title = "Score Position"
+        myAnnotation.title = NSLocalizedString("mapscore", comment: "")
         mapView.addAnnotation(myAnnotation)
     }
     

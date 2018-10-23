@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SpriteKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
@@ -17,9 +18,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onPhotoButton(_ sender: Any) {
@@ -29,18 +36,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    
     @IBAction func onSaveButton(_ sender: Any) {
         guard let selectedImage = imageView.image else {
             print("Image not found!")
             return
         }
         UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-    }
-    
-
-    @IBAction func backButton(_ sender: Any) {
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -52,9 +53,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // we got back an error!
-            showAlertWith(title: "Save error", message: error.localizedDescription)
+            showAlertWith(title: NSLocalizedString("savealerterror", comment: ""), message: error.localizedDescription)
         } else {
-            showAlertWith(title: "Saved!", message: "Your image has been saved to your photos.")
+            showAlertWith(title: NSLocalizedString("savealert", comment: ""), message: NSLocalizedString("savemessage", comment: ""))
         }
     }
     

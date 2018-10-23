@@ -15,4 +15,9 @@
 "meteor" = "Avoid to survive";
 "bonus" = "Double tap for 10pts";
 "map" = "View score position";
+"camera" = "Take a picture";
+"mapscore" = "Score Position";
+"savealerterror" = "Save Error";
+"savealert" = "Image Saved!";
+"savemessage" = "Your image has been saved to your photos.";
 

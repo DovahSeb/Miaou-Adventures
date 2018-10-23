@@ -13,57 +13,61 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Miaou_Adventures" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Menu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="GameViewController" customModule="Miaou_Adventures" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
+                        <viewLayoutGuide key="safeArea" id="rUB-78-Sn9"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-255" y="304"/>
+            <point key="canvasLocation" x="-266" y="-5"/>
         </scene>
         <!--ViewController-->
         <scene sceneID="VWz-k0-4Ru">
             <objects>
                 <viewController storyboardIdentifier="Camera" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1oA-Ja-9BD" userLabel="ViewController" customClass="ViewController" customModule="Miaou_Adventures" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleAspectFill" id="nJq-eP-gf1">
+                    <view key="view" contentMode="scaleToFill" id="nJq-eP-gf1" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rm7-PY-FU5">
-                                <rect key="frame" x="0.0" y="50" width="375" height="523"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="6xE-Fw-0xj" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBK-5U-hvX">
-                                <rect key="frame" x="68" y="595" width="52" height="52"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rm7-PY-FU5" userLabel="imageView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="587"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBK-5U-hvX" userLabel="takePic">
+                                <rect key="frame" x="162" y="595" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="camera"/>
                                 <connections>
                                     <action selector="onPhotoButton:" destination="1oA-Ja-9BD" eventType="touchUpInside" id="fKw-sH-y5v"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CW8-Mi-IFS">
-                                <rect key="frame" x="255" y="595" width="52" height="52"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1st-lL-ufL" userLabel="backButton">
+                                <rect key="frame" x="16" y="597" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <state key="normal" image="back_over"/>
+                                <connections>
+                                    <action selector="backButton:" destination="1oA-Ja-9BD" eventType="touchUpInside" id="nFT-tp-36N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CW8-Mi-IFS" userLabel="savePic">
+                                <rect key="frame" x="309" y="597" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="save"/>
                                 <connections>
                                     <action selector="onSaveButton:" destination="1oA-Ja-9BD" eventType="touchUpInside" id="Tds-06-T1j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1st-lL-ufL">
-                                <rect key="frame" x="16" y="15" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="back"/>
-                                <connections>
-                                    <action selector="backButton:" destination="1oA-Ja-9BD" eventType="touchUpInside" id="kYK-0z-Us8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="veE-Oh-cWA"/>
+                        <viewLayoutGuide key="safeArea" id="gnO-td-nbz"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="Rm7-PY-FU5" id="dEg-Ki-pRw"/>
@@ -71,11 +75,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6I-To-hSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-914.39999999999998" y="-17.541229385307346"/>
+            <point key="canvasLocation" x="-932" y="-57.121439280359823"/>
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="30" height="30"/>
+        <image name="BG" width="414" height="896"/>
+        <image name="back_over" width="52.5" height="52.5"/>
         <image name="camera" width="52.5" height="52.5"/>
         <image name="save" width="52.5" height="52.5"/>
     </resources>

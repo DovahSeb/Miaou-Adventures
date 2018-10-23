@@ -23,6 +23,8 @@ class HowToScene: SKScene {
     var coinTxt = SKLabelNode()
     var mapImg = SKSpriteNode()
     var mapTxt = SKLabelNode()
+    var cameraImg = SKSpriteNode()
+    var cameraTxt = SKLabelNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -69,6 +71,12 @@ class HowToScene: SKScene {
         
         //Add map text
         createMapTxt()
+        
+        //Add camera sprite
+        createCameraImg()
+        
+        //Add camera text
+        createCameraTxt()
         
     } //init function
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

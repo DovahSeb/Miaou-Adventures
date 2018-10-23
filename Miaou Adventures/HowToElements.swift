@@ -101,6 +101,7 @@ extension HowToScene{
         self.addChild(mapImg)
     }
     
+    //map text
     func createMapTxt(){
         mapTxt = SKLabelNode()
         mapTxt.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.45)
@@ -109,5 +110,25 @@ extension HowToScene{
         mapTxt.fontSize = 20
         mapTxt.fontName = "Verdana"
         self.addChild(mapTxt)
+    }
+    
+    //camera image
+    func createCameraImg(){
+        cameraImg = SKSpriteNode(imageNamed: "camera")
+        cameraImg.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.4)
+        cameraImg.zPosition = 2
+        cameraImg.size = CGSize(width: 35, height: 35)
+        self.addChild(cameraImg)
+    }
+    
+    //camera text
+    func createCameraTxt(){
+        cameraTxt = SKLabelNode()
+        cameraTxt.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.35)
+        cameraTxt.text = NSLocalizedString("camera", comment: "")
+        cameraTxt.zPosition = 2
+        cameraTxt.fontSize = 20
+        cameraTxt.fontName = "Verdana"
+        self.addChild(cameraTxt)
     }
 }

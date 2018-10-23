@@ -222,6 +222,13 @@ extension GamePlayScene{
         self.addChild(gameOverQuit)
     }
     
+    func createGameOverMap(){
+        gameOverMap = SKSpriteNode(imageNamed: "map")
+        gameOverMap.position = CGPoint(x: self.frame.width/2, y: self.frame.height/3)
+        gameOverMap.zPosition = 3
+        self.addChild(gameOverMap)
+    }
+    
     //called when a new scene is created
     func createScene(){
         //Add physics to the scene
@@ -266,6 +273,7 @@ extension GamePlayScene{
         createGameOverScore()
         createGameOverRestart()
         createGameOverQuit()
+        createGameOverMap()
         self.view?.gestureRecognizers?.removeAll()
     }
     
@@ -287,7 +295,6 @@ extension ScoreScene{
         self.addChild(scoreBackBtn)
     }
     
-    
     func createHighscoreLabel(){
         highScore = SKLabelNode()
         highScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
@@ -301,13 +308,6 @@ extension ScoreScene{
         highScore.fontSize = 30
         highScore.fontName = "Verdana"
         self.addChild(highScore)
-    }
-    
-    func createMapBtn(){
-        mapView = SKSpriteNode(imageNamed: "map")
-        mapView.position = CGPoint(x: self.frame.width/2, y: self.frame.height/4)
-        mapView.zPosition = 2
-        self.addChild(mapView)
     }
     
     func createCameraBtn(){

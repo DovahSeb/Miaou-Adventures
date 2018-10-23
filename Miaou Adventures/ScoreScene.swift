@@ -15,7 +15,6 @@ class ScoreScene: SKScene {
     var background = SKSpriteNode()
     var highScore = SKLabelNode()
     var scoreBackBtn = SKSpriteNode()
-    var mapView = SKSpriteNode()
     var cameraView = SKSpriteNode()
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,9 +39,6 @@ class ScoreScene: SKScene {
         //Add back button
         createScoreBack()
         
-        //Add map button
-        createMapBtn()
-        
         //Add camera button
         createCameraBtn()
         
@@ -59,25 +55,13 @@ class ScoreScene: SKScene {
                 self.view?.presentScene(scene, transition: reveal)
             }
             
-            if mapView.contains(touch.location(in: self)){
-                mapView.setScale(1.2)
-                let scene = MapView(size: self.size)
-                let reveal = SKTransition.reveal(with: .right, duration: 1.0)
-                self.view?.presentScene(scene, transition: reveal)
-            }
-            
             if cameraView.contains(touch.location(in: self)){
-                cameraView.setScale(1.2)
-                //let scene = CameraView(size: self.size)
-                //let reveal = SKTransition.reveal(with: .right, duration: 1.0)
-                //self.view?.presentScene(scene, transition: reveal)
-                //let currentViewController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
-                //currentViewController.present(ViewController(), animated: false, completion: nil)
+                cameraView.setScale(1.0)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier :"Camera")
                 let currentViewController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
                 
-                currentViewController.present(viewController, animated: false, completion: nil)
+                currentViewController.present(viewController, animated: true, completion: nil)
             }
         }
     }
@@ -87,10 +71,6 @@ class ScoreScene: SKScene {
             
             if scoreBackBtn.contains(touch.location(in: self)){
                 scoreBackBtn.setScale(1)
-            }
-            
-            if mapView.contains(touch.location(in: self)){
-                mapView.setScale(1.0)
             }
             
             if cameraView.contains(touch.location(in: self)){
