@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Miaou Adventures
+
+  Created by Sebastien Larue on 15/10/2018.
+  Copyright © 2018 KangaGames. All rights reserved.
+*/
+
+"reinitscore" = "Reinicializar puntuación";
+"yourscore" = "Tus puntos: ";
+"gameover" = "Perdido";
+"highscore" = "Mejor puntuación: ";
+"howto" = "Como jugar?";
+"move" = "Inclina tu teléfono";
+"meteor" = "Evitar para sobrevivir ";
+"bonus" = "Haz doble clic para obtener 10 puntos";
+"map" = "Visualizar los puntos";
+"camera" = "Tomar una foto";
+"mapscore" = "Posición geográfica de las puntuaciones";
+"savealerterror" = "Error de salvaguarda";
+"savealert" = "Foto guardada!";
+"savemessage" = "Tu foto ha sido guardada.";
+

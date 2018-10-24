@@ -47,7 +47,7 @@ extension HowToScene{
         direction.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.75)
         direction.text = NSLocalizedString("move", comment: "")
         direction.zPosition = 2
-        direction.fontSize = 20
+        direction.fontSize = 19
         direction.fontName = "Verdana"
         self.addChild(direction)
     }
@@ -67,7 +67,7 @@ extension HowToScene{
         meteorTxt.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.65)
         meteorTxt.text = NSLocalizedString("meteor", comment: "")
         meteorTxt.zPosition = 2
-        meteorTxt.fontSize = 20
+        meteorTxt.fontSize = 19
         meteorTxt.fontName = "Verdana"
         self.addChild(meteorTxt)
     }
@@ -87,7 +87,7 @@ extension HowToScene{
         coinTxt.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.55)
         coinTxt.text = NSLocalizedString("bonus", comment: "")
         coinTxt.zPosition = 2
-        coinTxt.fontSize = 20
+        coinTxt.fontSize = 19
         coinTxt.fontName = "Verdana"
         self.addChild(coinTxt)
     }
@@ -107,7 +107,7 @@ extension HowToScene{
         mapTxt.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.45)
         mapTxt.text = NSLocalizedString("map", comment: "")
         mapTxt.zPosition = 2
-        mapTxt.fontSize = 20
+        mapTxt.fontSize = 19
         mapTxt.fontName = "Verdana"
         self.addChild(mapTxt)
     }
@@ -127,7 +127,7 @@ extension HowToScene{
         cameraTxt.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.35)
         cameraTxt.text = NSLocalizedString("camera", comment: "")
         cameraTxt.zPosition = 2
-        cameraTxt.fontSize = 20
+        cameraTxt.fontSize = 19
         cameraTxt.fontName = "Verdana"
         self.addChild(cameraTxt)
     }

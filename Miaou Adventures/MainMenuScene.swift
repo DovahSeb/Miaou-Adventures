@@ -126,7 +126,7 @@ class MainMenuScene: SKScene {
             }
             
             if resetScore.contains(touch.location(in: self)){
-                resetScore.setScale(1.2)
+                resetScore.setScale(1.1)
                 let defaults = UserDefaults.standard
                 defaults.set(0, forKey: "highestScore")
                 defaults.synchronize()

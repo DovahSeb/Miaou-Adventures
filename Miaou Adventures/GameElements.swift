@@ -41,33 +41,33 @@ extension GamePlayScene{
     
     func createPauseButton() {
         pauseButton = SKSpriteNode(imageNamed: "pause")
-        pauseButton.position = CGPoint(x: self.frame.width * 0.8, y: self.frame.height * 0.94)
+        pauseButton.position = CGPoint(x: self.frame.width * 0.8, y: self.frame.height * 0.95)
         pauseButton.zPosition = 4
         self.addChild(pauseButton)
     }
     
     func createRestartButton(){
         restartButton = SKSpriteNode(imageNamed: "reset")
-        restartButton.position = CGPoint(x: self.frame.width * 0.9, y: self.frame.height * 0.94)
+        restartButton.position = CGPoint(x: self.frame.width * 0.92, y: self.frame.height * 0.95)
         restartButton.zPosition = 4
         self.addChild(restartButton)
     }
     
     func createBackButton(){
         backButton = SKSpriteNode(imageNamed: "back")
-        backButton.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.94)
+        backButton.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.95)
         backButton.zPosition = 4
         self.addChild(backButton)
     }
     
     func createScoreLabel(){
         scoreLbl = SKLabelNode()
-        scoreLbl.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.92)
+        scoreLbl.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.935)
         scoreLbl.text = "Score: 0"
         scoreLbl.fontColor = SKColor.white
         scoreLbl.zPosition = 4
         scoreLbl.fontSize = 20
-        scoreLbl.fontName = "Verdana"
+        scoreLbl.fontName = "Verdana Bold"
         self.addChild(scoreLbl)
         let delay = SKAction.wait(forDuration: 0.5)
         let incrementScore = SKAction.run ({
@@ -166,7 +166,7 @@ extension GamePlayScene{
             SKAction.animate(with: [PointsTexture], timePerFrame: 0.05)
             ])
         let Points = SKSpriteNode(texture: PointsTexture)
-        Points.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.9)
+        Points.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.85)
         Points.zPosition = 4
         Points.run(animatePoints)
         addChild(Points)
@@ -286,38 +286,6 @@ extension GamePlayScene{
     }
 }
 
-extension ScoreScene{
-    
-    func createScoreBack(){
-        scoreBackBtn = SKSpriteNode(imageNamed: "back")
-        scoreBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.94)
-        scoreBackBtn.zPosition = 2
-        self.addChild(scoreBackBtn)
-    }
-    
-    func createHighscoreLabel(){
-        highScore = SKLabelNode()
-        highScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
-        let defaults = UserDefaults.standard
-        if let highestScore = defaults.object(forKey: "highestScore"){
-            highScore.text = NSLocalizedString("highscore", comment: "") + "\(highestScore)"
-        } else {
-            highScore.text = NSLocalizedString("highscore", comment: "") + "0"
-        }
-        highScore.zPosition = 2
-        highScore.fontSize = 30
-        highScore.fontName = "Verdana"
-        self.addChild(highScore)
-    }
-    
-    func createCameraBtn(){
-        cameraView = SKSpriteNode(imageNamed: "camera")
-        cameraView.position = CGPoint(x: self.frame.width/2, y: self.frame.height/6)
-        cameraView.zPosition = 2
-        self.addChild(cameraView)
-    }
-}
-
 extension MainMenuScene{
     
     //reset score
@@ -326,11 +294,32 @@ extension MainMenuScene{
         resetScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/11)
         resetScore.text = NSLocalizedString("reinitscore", comment: "")
         resetScore.zPosition = 2
-        resetScore.fontSize = 15
+        resetScore.fontSize = 14
         resetScore.fontName = "Verdana Bold"
         self.addChild(resetScore)
     }
     
+}
+
+extension MapView{
+    
+    //back button
+    func createMapBackBtn(){
+        mapBackBtn = SKSpriteNode(imageNamed: "back")
+        mapBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.95)
+        mapBackBtn.zPosition = 3
+        self.addChild(mapBackBtn)
+    }
+    
+    //banner
+    func createMapBanner(){
+        let mapBannerSize = CGSize(width: frame.size.width, height: frame.size.height/9.5)
+        mapBanner = SKShapeNode(rectOf: mapBannerSize)
+        mapBanner.position = CGPoint(x: frame.size.width/2, y: frame.size.height * 0.95)
+        mapBanner.zPosition = 2
+        mapBanner.fillColor = UIColor(red:87/255, green:182/255, blue:170/255, alpha: 1)
+        self.addChild(mapBanner)
+    }
 }
 
 

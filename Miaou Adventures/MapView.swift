@@ -15,6 +15,8 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
     
     var locationManager:CLLocationManager!
     var mapView:MKMapView!
+    var mapBackBtn = SKSpriteNode()
+    var mapBanner = SKShapeNode()
     
     override func didMove(to view: SKView) {
         
@@ -22,21 +24,47 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
         createMapView()
         //function to determine the location
         determineCurrentLocation()
+        //add map back button
+        createMapBackBtn()
+        //add banner
+        createMapBanner()
      
     }
     
-    func createMapView()
-    {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        
+        if let touch = touches.first{
+            
+            if mapBackBtn.contains(touch.location(in: self)){
+                mapBackBtn.setScale(1.2)
+                mapView.removeFromSuperview()
+                let scene = MainMenuScene(size: self.size)
+                let reveal = SKTransition.reveal(with: .right, duration: 1.0)
+                self.view?.presentScene(scene, transition: reveal)
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if let touch = touches.first{
+            
+            if mapBackBtn.contains(touch.location(in: self)){
+                mapBackBtn.setScale(1.0)
+            }
+        }
+    }
+    
+    func createMapView(){
         mapView = MKMapView()
-        mapView.frame = CGRect(x: 0,y: 0,width: self.size.width,height: self.size.height)
+        mapView.frame = CGRect(x: 0,y: 70, width: self.size.width, height: self.size.height)
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         view?.addSubview(mapView)
     }
     
-    func determineCurrentLocation()
-    {
+    func determineCurrentLocation(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -66,10 +94,7 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
         mapView.addAnnotation(myAnnotation)
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
         print("Error \(error)")
     }
-    
-   
 }
