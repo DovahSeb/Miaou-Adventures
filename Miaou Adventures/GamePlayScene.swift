@@ -186,6 +186,15 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
                 let scene = MapView(size: self.size)
                 let reveal = SKTransition.reveal(with: .right, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)
+                let defaults = UserDefaults.standard
+                if defaults.object(forKey: "highestScore") != nil {
+                    let hscore = defaults.integer(forKey: "highestScore")
+                    if hscore < score{
+                        defaults.set(score, forKey: "highestScore")
+                    }
+                } else {
+                    defaults.set(0, forKey: "highestScore")
+                }
             }
         }
     }
