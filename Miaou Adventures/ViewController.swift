@@ -25,11 +25,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.didReceiveMemoryWarning()
     }
     
-    
+    //back button
     @IBAction func backButton(_ sender: Any) {
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
+    //access photo camera
     @IBAction func onPhotoButton(_ sender: Any) {
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self

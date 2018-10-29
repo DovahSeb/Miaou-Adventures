@@ -120,7 +120,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        
+        //Called when a touch starts
         if let touch = touches.first{
             
             if pauseButton.contains(touch.location(in: self)){
@@ -245,10 +245,10 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         //this ensures that your backgrounds line up perfectly
         if stars1.position.y <= -self.frame.size.height {
-           stars1.position.y = self.frame.size.height
+            stars1.position.y = self.frame.size.height/2
         }
         if stars2.position.y <= -self.frame.size.height {
-            stars2.position.y = self.frame.size.height
+            stars2.position.y = self.frame.size.height/2
         }
         if let accelerometerData = motionManager.accelerometerData {
             hero.physicsBody!.applyForce(CGVector(dx: 150 * CGFloat(accelerometerData.acceleration.x), dy: 120 * CGFloat(accelerometerData.acceleration.y)))

@@ -45,7 +45,7 @@ class ScoreScene: SKScene {
     } //init function
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        
+        //Called when a touch starts
         if let touch = touches.first{
             
             if scoreBackBtn.contains(touch.location(in: self)){
@@ -67,10 +67,11 @@ class ScoreScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //Called when a touch ends
         if let touch = touches.first{
             
             if scoreBackBtn.contains(touch.location(in: self)){
-                scoreBackBtn.setScale(1)
+                scoreBackBtn.setScale(1.0)
             }
             
             if cameraView.contains(touch.location(in: self)){

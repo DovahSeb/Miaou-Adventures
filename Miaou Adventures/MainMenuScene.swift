@@ -67,31 +67,11 @@ class MainMenuScene: SKScene {
         soundButton.zPosition = 2
         addChild(soundButton)
         
-        //Reset Score
-        //createResetScore()
-        
     }
-    
     
     override func sceneDidLoad() {
         //Reset Score
         createResetScore()
-    }
-    
-    func touchBegan(toPoint pos : CGPoint){
-        
-    }
-    
-    func touchDown(atPoint pos : CGPoint) {
-
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -134,11 +114,6 @@ class MainMenuScene: SKScene {
         }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-
-    }
-    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         /*Called when a touch ends*/
         if let touch = touches.first {
@@ -165,10 +140,6 @@ class MainMenuScene: SKScene {
             }
         }
         selectedButton = nil
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
     //Handles button click

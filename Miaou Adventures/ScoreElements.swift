@@ -11,6 +11,7 @@ import SpriteKit
 
 extension ScoreScene{
     
+    //Create back button
     func createScoreBack(){
         scoreBackBtn = SKSpriteNode(imageNamed: "back")
         scoreBackBtn.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.95)
@@ -18,6 +19,7 @@ extension ScoreScene{
         self.addChild(scoreBackBtn)
     }
     
+    //Create high score label
     func createHighscoreLabel(){
         highScore = SKLabelNode()
         highScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
@@ -33,6 +35,7 @@ extension ScoreScene{
         self.addChild(highScore)
     }
     
+    //Create access to camera button
     func createCameraBtn(){
         cameraView = SKSpriteNode(imageNamed: "camera")
         cameraView.position = CGPoint(x: self.frame.width/2, y: self.frame.height/6)

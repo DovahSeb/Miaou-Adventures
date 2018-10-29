@@ -57,7 +57,7 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
     
     func createMapView(){
         mapView = MKMapView()
-        mapView.frame = CGRect(x: 0,y: 70, width: self.size.width, height: self.size.height)
+        mapView.frame = CGRect(x: 0, y: 70, width: self.size.width, height: self.size.height)
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true

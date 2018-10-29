@@ -2,16 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>Autorisez-vous cette application à connaître votre position actuelle?</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Do you allow this app to take pictures?</string>
+	<string>Autorisez-vous cette application à prendre des photos?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Do you allow this app to save pictures?</string>
+	<string>Autorisez-vous cette application à enregistrer des images?</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Do you allow this app to save pictures?</string>
+	<string>Autorisez-vous cette application à enregistrer des images?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -44,8 +42,6 @@
 	<true/>
 	<key>UIStatusBarHidden</key>
 	<true/>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

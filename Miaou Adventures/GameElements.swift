@@ -24,6 +24,7 @@ struct CollisionBitMask {
 
 extension GamePlayScene{
     
+    //Create banner on top
     func createBanner(){
         let bannerSize = CGSize(width: frame.size.width, height: frame.size.height/9.5)
         banner = SKShapeNode(rectOf: bannerSize)
@@ -39,6 +40,7 @@ extension GamePlayScene{
         self.addChild(banner)
     }
     
+    //Create pause button
     func createPauseButton() {
         pauseButton = SKSpriteNode(imageNamed: "pause")
         pauseButton.position = CGPoint(x: self.frame.width * 0.8, y: self.frame.height * 0.95)
@@ -46,6 +48,7 @@ extension GamePlayScene{
         self.addChild(pauseButton)
     }
     
+    //Create restart button
     func createRestartButton(){
         restartButton = SKSpriteNode(imageNamed: "reset")
         restartButton.position = CGPoint(x: self.frame.width * 0.92, y: self.frame.height * 0.95)
@@ -53,6 +56,7 @@ extension GamePlayScene{
         self.addChild(restartButton)
     }
     
+    //Create back button
     func createBackButton(){
         backButton = SKSpriteNode(imageNamed: "back")
         backButton.position = CGPoint(x: self.frame.width/12, y: self.frame.height * 0.95)
@@ -60,6 +64,7 @@ extension GamePlayScene{
         self.addChild(backButton)
     }
     
+    //Create score label
     func createScoreLabel(){
         scoreLbl = SKLabelNode()
         scoreLbl.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.935)
@@ -77,25 +82,27 @@ extension GamePlayScene{
         scoreLbl.run(SKAction.repeatForever(SKAction.sequence([delay,incrementScore])))
     }
     
-    
+    //setting backgroud stars
     func star1(){
         stars1 = SKSpriteNode(imageNamed: "stars")
-        stars1.position = CGPoint(x: self.size.width, y: self.size.height)
+        stars1.position = CGPoint(x: self.frame.width/2, y: self.frame.height)
         stars1.zPosition = 1
         let scrollDown = SKAction.repeatForever(SKAction.move(by: CGVector(dx: 0, dy: -self.frame.size.height), duration: 4))
         stars1.run(scrollDown)
         self.addChild(stars1)
     }
     
+    //setting background stars
     func star2(){
         stars2 = SKSpriteNode(imageNamed: "stars")
-        stars2.position = CGPoint(x: 0, y: stars1.size.height - 1)
+        stars2.position = CGPoint(x: self.frame.width/2, y: stars1.size.height + 1)
         stars2.zPosition = 1
         let scrollDown = SKAction.repeatForever(SKAction.move(by: CGVector(dx: 0, dy: -self.frame.size.height), duration: 4))
         stars2.run(scrollDown)
         self.addChild(stars2)
     }
     
+    //Create the hero
     func addHero(){
         hero = SKSpriteNode(imageNamed: "cat_hero")
         hero.position = CGPoint(x: self.frame.width/2, y: self.frame.height/10)
@@ -113,6 +120,7 @@ extension GamePlayScene{
         self.addChild(hero)
     }
     
+    //Create bonus points
     func addCoins(){
         coins = SKSpriteNode(imageNamed: "coins")
         // Random spawn
@@ -120,13 +128,10 @@ extension GamePlayScene{
         coins.position = CGPoint(x: actualX, y: size.height + size.height/2)
         coins.zPosition = 2
         //Add physics
-        coins.physicsBody = SKPhysicsBody(circleOfRadius: max(coins.size.width/2, coins.size.height/2))
-        coins.physicsBody?.usesPreciseCollisionDetection = true
         coins.physicsBody?.isDynamic = true
         coins.physicsBody?.categoryBitMask = CollisionBitMask.coinsCategory
         coins.physicsBody?.collisionBitMask = 0
-        coins.physicsBody?.contactTestBitMask = CollisionBitMask.heroCategory
-        // Create the actions
+        coins.physicsBody?.contactTestBitMask = 0
         let actionMove = SKAction.move(to: CGPoint(x: actualX , y: -coins.size.height),
                                        duration: TimeInterval(3.0))
         let actionMoveDone = SKAction.removeFromParent()
@@ -135,7 +140,7 @@ extension GamePlayScene{
         self.addChild(coins)
     }
     
-    
+    //Create the meteor shower
     func addMeteor() {
         meteor = SKSpriteNode(imageNamed: "meteor")
         // Random spawn
@@ -147,7 +152,7 @@ extension GamePlayScene{
         // Determine speed of the meteor
         let actualDuration = random(min: CGFloat(1.5), max: CGFloat(2.0))
         //Add physics
-        meteor.physicsBody = SKPhysicsBody(circleOfRadius: max(meteor.size.width/2, meteor.size.height/2))
+        meteor.physicsBody = SKPhysicsBody(circleOfRadius: max(meteor.size.width/4, meteor.size.height/4))
         meteor.physicsBody?.isDynamic = true
         meteor.physicsBody?.categoryBitMask = CollisionBitMask.meteorCategory
         meteor.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory | CollisionBitMask.meteorCategory
@@ -159,6 +164,7 @@ extension GamePlayScene{
         meteor.run(SKAction.sequence([actionMove, actionMoveDone]))
     }
     
+    //Points texture
     func createPoints(){
         let PointsTexture = SKTexture(imageNamed: "points")
         let animatePoints = SKAction.sequence([
@@ -173,6 +179,7 @@ extension GamePlayScene{
         Points.run(animatePoints, completion : {Points.removeFromParent()})
     }
     
+    //Explosion effect
     func createExplosion(){
         let ExplosionTexture = SKTexture(imageNamed: "explosion")
         let animateExplosion = SKAction.sequence([
@@ -186,6 +193,7 @@ extension GamePlayScene{
         Explosion.run(animateExplosion, completion : {Explosion.removeFromParent()})
     }
     
+    //Game over text
     func createGameOverText(){
         gameOverText = SKLabelNode()
         gameOverText.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.8)
@@ -197,6 +205,7 @@ extension GamePlayScene{
         self.addChild(gameOverText)
     }
     
+    //Game over final score
     func createGameOverScore(){
         gameOverScore = SKLabelNode()
         gameOverScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.7)
@@ -208,6 +217,7 @@ extension GamePlayScene{
         self.addChild(gameOverScore)
     }
     
+    //Restart button on game over
     func createGameOverRestart(){
         gameOverRestart = SKSpriteNode(imageNamed: "reset_over")
         gameOverRestart.position = CGPoint(x: self.frame.width * 0.7, y: self.frame.height/2)
@@ -215,6 +225,7 @@ extension GamePlayScene{
         self.addChild(gameOverRestart)
     }
     
+    //Back button on game over
     func createGameOverQuit(){
         gameOverQuit = SKSpriteNode(imageNamed: "back_over")
         gameOverQuit.position = CGPoint(x: self.frame.width/3, y: self.frame.height/2)
@@ -222,6 +233,7 @@ extension GamePlayScene{
         self.addChild(gameOverQuit)
     }
     
+    //Map button on game over
     func createGameOverMap(){
         gameOverMap = SKSpriteNode(imageNamed: "map")
         gameOverMap.position = CGPoint(x: self.frame.width/2, y: self.frame.height/3)
@@ -251,15 +263,6 @@ extension GamePlayScene{
         self.removeAllActions()
         score = 0
         createScene()
-        //createBanner()
-        //createPauseButton()
-        //createRestartButton()
-        //createScoreLabel()
-        //star1()
-        //star2()
-        //addHero()
-        //addCoins()
-        //addMeteor()
     }
     
     //called when hero is destroyed
