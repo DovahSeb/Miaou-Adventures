@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SpriteKit
+import CoreLocation
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
@@ -17,10 +18,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -55,7 +54,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // we got back an error!
-            showAlertWith(title: NSLocalizedString("savealerterror", comment: ""), message: error.localizedDescription)
+            showAlertWith(title: NSLocalizedString("savealerterror", comment: "") , message: error.localizedDescription)
         } else {
             showAlertWith(title: NSLocalizedString("savealert", comment: ""), message: NSLocalizedString("savemessage", comment: ""))
         }
@@ -66,5 +65,4 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
     }
-    
 }

@@ -87,10 +87,13 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
         
         mapView.setRegion(region, animated: true)
         
-        // Drop a pin at user's Current Location
+        // Drop a pin at user's Current Location with coordinates
+        let latitude = userLocation.coordinate.latitude
+        let longitude = userLocation.coordinate.longitude
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         myAnnotation.title = NSLocalizedString("mapscore", comment: "")
+        myAnnotation.subtitle = "Lat " + (String(format: "%.2f", latitude) + ", Lon " + String(format: "%.2f", longitude))
         mapView.addAnnotation(myAnnotation)
     }
     
