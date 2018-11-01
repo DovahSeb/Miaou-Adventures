@@ -11,8 +11,9 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 import UIKit
+import GoogleMobileAds
 
-class GamePlayScene: SKScene, SKPhysicsContactDelegate {
+class GamePlayScene: SKScene, SKPhysicsContactDelegate, GADBannerViewDelegate {
     
     //credits to https://icons8.com for providing the icons
     //Declare variables
@@ -93,6 +94,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         func meteorSpawn(){
             let spawn = SKAction.run(addMeteor)
             let wait = SKAction.wait(forDuration: 1.0)
+            
             let sequence = SKAction.sequence([spawn, wait])
             run(SKAction.repeatForever(sequence))
         }; meteorSpawn()
@@ -106,6 +108,10 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         tap.numberOfTapsRequired = 2
         tap.numberOfTouchesRequired = 1
         view.addGestureRecognizer(tap)
+        
+        //Hide banner ad
+        let BannerAd = self.view?.viewWithTag(100) as! GADBannerView?
+        BannerAd?.isHidden = true
         
     }
     

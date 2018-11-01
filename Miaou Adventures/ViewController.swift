@@ -37,6 +37,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    //button to save the picture in the uiview
     @IBAction func onSaveButton(_ sender: Any) {
         guard let selectedImage = imageView.image else {
             print("Image not found!")

@@ -8,10 +8,11 @@
 
 import SpriteKit
 import GameplayKit
+import GoogleMobileAds
 
-class MainMenuScene: SKScene {
+class MainMenuScene: SKScene, GADBannerViewDelegate{
     
-    
+    //Declare variables
     var background = SKSpriteNode()
     var play = SKSpriteNode()
     var score = SKSpriteNode()
@@ -46,14 +47,12 @@ class MainMenuScene: SKScene {
         play.position = CGPoint(x: viewSize.width/2, y: viewSize.height/2)
         play.zPosition = 2
         self.addChild(play)
-        //play.name = "play"
         
         // Load score button
         score = SKSpriteNode(imageNamed: "score")
         score.position = CGPoint(x: viewSize.width/2, y: viewSize.height/3)
         score.zPosition = 2
         self.addChild(score)
-        //score.name = "score"
         
         // Load howto button
         howto = SKSpriteNode(imageNamed: "howto")
@@ -67,6 +66,9 @@ class MainMenuScene: SKScene {
         soundButton.zPosition = 2
         addChild(soundButton)
         
+        //Show banner ad
+        let BannerAd = self.view?.viewWithTag(100) as! GADBannerView?
+        BannerAd?.isHidden = false
     }
     
     override func sceneDidLoad() {
@@ -80,6 +82,7 @@ class MainMenuScene: SKScene {
             
             if play.contains(touch.location(in: self)){
                 play.setScale(1.2)
+                
                 let scene = GamePlayScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)

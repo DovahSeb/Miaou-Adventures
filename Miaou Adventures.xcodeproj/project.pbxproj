@@ -30,6 +30,9 @@
 		1EC47B39217DD7DF00C2451E /* HowToElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC47B38217DD7DF00C2451E /* HowToElements.swift */; };
 		1EC47B3B217DDDB300C2451E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC47B3A217DDDB300C2451E /* ViewController.swift */; };
 		1ECB9CA5217F063A00BA2B20 /* ScoreElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECB9CA4217F063A00BA2B20 /* ScoreElements.swift */; };
+		269E9114FB3D7C7416C220E5 /* Pods_Miaou_AdventuresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9866AD161505E654FA6A9A61 /* Pods_Miaou_AdventuresTests.framework */; };
+		46FF96010211C14E8EA69DB2 /* Pods_Miaou_Adventures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD4B9573C984EB0D93D2156 /* Pods_Miaou_Adventures.framework */; };
+		CCDDF889F5C381D2E1C97305 /* Pods_Miaou_AdventuresUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC003FC43EFC68788D64A3B /* Pods_Miaou_AdventuresUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -65,6 +68,7 @@
 		1E01A278215E81D300482FE7 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		1E01A279215E81D300482FE7 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
 		1E0A6E4E215547B4008C380C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		1E0D030921882E48003A5A91 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1AC0692175088D00547811 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1E1AC06C2175287500547811 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1E21A65D215235DF008A6668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 		1EC47B38217DD7DF00C2451E /* HowToElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToElements.swift; sourceTree = "<group>"; };
 		1EC47B3A217DDDB300C2451E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1ECB9CA4217F063A00BA2B20 /* ScoreElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreElements.swift; sourceTree = "<group>"; };
+		28D118E8E08FF2586B7BF45C /* Pods-Miaou AdventuresUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miaou AdventuresUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Miaou AdventuresUITests/Pods-Miaou AdventuresUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		439E65CEF00A263978940FF5 /* Pods-Miaou AdventuresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miaou AdventuresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Miaou AdventuresTests/Pods-Miaou AdventuresTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5CD4B9573C984EB0D93D2156 /* Pods_Miaou_Adventures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Miaou_Adventures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81E34F1EE6564F8A103D46A7 /* Pods-Miaou AdventuresUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miaou AdventuresUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Miaou AdventuresUITests/Pods-Miaou AdventuresUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9866AD161505E654FA6A9A61 /* Pods_Miaou_AdventuresTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Miaou_AdventuresTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F328740D4FCBD3F5A09C555 /* Pods-Miaou AdventuresTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miaou AdventuresTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Miaou AdventuresTests/Pods-Miaou AdventuresTests.release.xcconfig"; sourceTree = "<group>"; };
+		B5229F96E778D7710C92D4FB /* Pods-Miaou Adventures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miaou Adventures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Miaou Adventures/Pods-Miaou Adventures.debug.xcconfig"; sourceTree = "<group>"; };
+		CBC003FC43EFC68788D64A3B /* Pods_Miaou_AdventuresUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Miaou_AdventuresUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB83BDAB0099E3E84A8F2A96 /* Pods-Miaou Adventures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miaou Adventures.release.xcconfig"; path = "Pods/Target Support Files/Pods-Miaou Adventures/Pods-Miaou Adventures.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1AC06D2175287500547811 /* MapKit.framework in Frameworks */,
+				46FF96010211C14E8EA69DB2 /* Pods_Miaou_Adventures.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269E9114FB3D7C7416C220E5 /* Pods_Miaou_AdventuresTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCDDF889F5C381D2E1C97305 /* Pods_Miaou_AdventuresUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +152,11 @@
 		1E1AC06B2175287500547811 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E0D030921882E48003A5A91 /* GoogleUtilities.framework */,
 				1E1AC06C2175287500547811 /* MapKit.framework */,
+				5CD4B9573C984EB0D93D2156 /* Pods_Miaou_Adventures.framework */,
+				9866AD161505E654FA6A9A61 /* Pods_Miaou_AdventuresTests.framework */,
+				CBC003FC43EFC68788D64A3B /* Pods_Miaou_AdventuresUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,6 +169,7 @@
 				1E28A03A21522C7C005ABD37 /* Miaou AdventuresUITests */,
 				1E28A01321522C7A005ABD37 /* Products */,
 				1E1AC06B2175287500547811 /* Frameworks */,
+				8F749239F7FFDCE573C94088 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +235,19 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		8F749239F7FFDCE573C94088 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B5229F96E778D7710C92D4FB /* Pods-Miaou Adventures.debug.xcconfig */,
+				EB83BDAB0099E3E84A8F2A96 /* Pods-Miaou Adventures.release.xcconfig */,
+				439E65CEF00A263978940FF5 /* Pods-Miaou AdventuresTests.debug.xcconfig */,
+				9F328740D4FCBD3F5A09C555 /* Pods-Miaou AdventuresTests.release.xcconfig */,
+				28D118E8E08FF2586B7BF45C /* Pods-Miaou AdventuresUITests.debug.xcconfig */,
+				81E34F1EE6564F8A103D46A7 /* Pods-Miaou AdventuresUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,9 +255,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E28A04021522C7C005ABD37 /* Build configuration list for PBXNativeTarget "Miaou Adventures" */;
 			buildPhases = (
+				999B39E9FBA7F72F1305A2E4 /* [CP] Check Pods Manifest.lock */,
 				1E28A00E21522C7A005ABD37 /* Sources */,
 				1E28A00F21522C7A005ABD37 /* Frameworks */,
 				1E28A01021522C7A005ABD37 /* Resources */,
+				5E8E081627D025A5C13E460E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 				1E038C5C215E28E40019CD68 /* PBXBuildRule */,
@@ -239,6 +275,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E28A04321522C7C005ABD37 /* Build configuration list for PBXNativeTarget "Miaou AdventuresTests" */;
 			buildPhases = (
+				C6F151903CB1E8B5B30361D1 /* [CP] Check Pods Manifest.lock */,
 				1E28A02821522C7C005ABD37 /* Sources */,
 				1E28A02921522C7C005ABD37 /* Frameworks */,
 				1E28A02A21522C7C005ABD37 /* Resources */,
@@ -257,6 +294,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E28A04621522C7C005ABD37 /* Build configuration list for PBXNativeTarget "Miaou AdventuresUITests" */;
 			buildPhases = (
+				A422231F3797E322824EDAAC /* [CP] Check Pods Manifest.lock */,
 				1E28A03321522C7C005ABD37 /* Sources */,
 				1E28A03421522C7C005ABD37 /* Frameworks */,
 				1E28A03521522C7C005ABD37 /* Resources */,
@@ -352,6 +390,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5E8E081627D025A5C13E460E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Miaou Adventures/Pods-Miaou Adventures-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Miaou Adventures/Pods-Miaou Adventures-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		999B39E9FBA7F72F1305A2E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Miaou Adventures-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A422231F3797E322824EDAAC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Miaou AdventuresUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6F151903CB1E8B5B30361D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Miaou AdventuresTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1E28A00E21522C7A005ABD37 /* Sources */ = {
@@ -564,6 +695,7 @@
 		};
 		1E28A04121522C7C005ABD37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5229F96E778D7710C92D4FB /* Pods-Miaou Adventures.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -583,6 +715,7 @@
 		};
 		1E28A04221522C7C005ABD37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB83BDAB0099E3E84A8F2A96 /* Pods-Miaou Adventures.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -602,6 +735,7 @@
 		};
 		1E28A04421522C7C005ABD37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 439E65CEF00A263978940FF5 /* Pods-Miaou AdventuresTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -623,6 +757,7 @@
 		};
 		1E28A04521522C7C005ABD37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F328740D4FCBD3F5A09C555 /* Pods-Miaou AdventuresTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -644,6 +779,7 @@
 		};
 		1E28A04721522C7C005ABD37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28D118E8E08FF2586B7BF45C /* Pods-Miaou AdventuresUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -664,6 +800,7 @@
 		};
 		1E28A04821522C7C005ABD37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81E34F1EE6564F8A103D46A7 /* Pods-Miaou AdventuresUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

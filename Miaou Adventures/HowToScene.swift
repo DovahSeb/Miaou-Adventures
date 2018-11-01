@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import GoogleMobileAds
 
 class HowToScene: SKScene {
     
@@ -79,6 +80,14 @@ class HowToScene: SKScene {
         createCameraTxt()
         
     } //init function
+    
+    override func didMove(to view: SKView) {
+        
+        //Hide banner ad
+        let BannerAd = self.view?.viewWithTag(100) as! GADBannerView?
+        BannerAd?.isHidden = true
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         if let touch = touches.first{
             

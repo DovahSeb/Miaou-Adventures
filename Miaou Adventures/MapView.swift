@@ -55,6 +55,7 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
         }
     }
     
+    //Creates the map
     func createMapView(){
         mapView = MKMapView()
         mapView.frame = CGRect(x: 0, y: 70, width: self.size.width, height: self.size.height)
@@ -64,6 +65,7 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
         view?.addSubview(mapView)
     }
     
+    //Determines the player position
     func determineCurrentLocation(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -93,7 +95,7 @@ class MapView : SKScene, MKMapViewDelegate, CLLocationManagerDelegate{
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         myAnnotation.title = NSLocalizedString("mapscore", comment: "")
-        myAnnotation.subtitle = "Lat " + (String(format: "%.2f", latitude) + ", Lon " + String(format: "%.2f", longitude))
+        myAnnotation.subtitle = "Latitude " + (String(format: "%.2f", latitude) + ", Longitude " + String(format: "%.2f", longitude))
         mapView.addAnnotation(myAnnotation)
     }
     

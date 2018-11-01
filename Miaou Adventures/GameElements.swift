@@ -150,7 +150,12 @@ extension GamePlayScene{
         meteor.zPosition = 2
         self.addChild(meteor)
         // Determine speed of the meteor
-        let actualDuration = random(min: CGFloat(1.5), max: CGFloat(2.0))
+        var actualDuration = random(min: CGFloat(1.5), max: CGFloat(2.0))
+        if score > 100 {
+            actualDuration = random(min: CGFloat(1.0), max: CGFloat(1.5))
+        } else if score > 200 {
+            actualDuration = random(min: CGFloat(0.75), max: CGFloat(1.0))
+        }
         //Add physics
         meteor.physicsBody = SKPhysicsBody(circleOfRadius: max(meteor.size.width/4, meteor.size.height/4))
         meteor.physicsBody?.isDynamic = true
