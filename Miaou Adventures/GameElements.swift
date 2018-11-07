@@ -201,48 +201,58 @@ extension GamePlayScene{
     //Game over text
     func createGameOverText(){
         gameOverText = SKLabelNode()
-        gameOverText.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.8)
+        gameOverText.position = CGPoint(x: self.frame.width/2, y: self.frame.height + 10)
         gameOverText.text = NSLocalizedString("gameover", comment: "")
         gameOverText.fontColor = SKColor.white
         gameOverText.zPosition = 3
         gameOverText.fontSize = 30
         gameOverText.fontName = "Verdana"
+        let moveText = SKAction.move(to: CGPoint(x: self.frame.width/2, y: self.frame.height * 0.8), duration: 1.0)
+        gameOverText.run(moveText)
         self.addChild(gameOverText)
     }
     
     //Game over final score
     func createGameOverScore(){
         gameOverScore = SKLabelNode()
-        gameOverScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 0.7)
+        gameOverScore.position = CGPoint(x: self.frame.width/2, y: self.frame.height)
         gameOverScore.text = NSLocalizedString("yourscore", comment: "") + "\(score)"
         gameOverScore.fontColor = SKColor.white
         gameOverScore.zPosition = 3
         gameOverScore.fontSize = 20
         gameOverScore.fontName = "Verdana"
+        let moveScore = SKAction.move(to: CGPoint(x: self.frame.width/2, y: self.frame.height * 0.7), duration: 1.0)
+        gameOverScore.run(moveScore)
         self.addChild(gameOverScore)
     }
     
     //Restart button on game over
     func createGameOverRestart(){
         gameOverRestart = SKSpriteNode(imageNamed: "reset_over")
-        gameOverRestart.position = CGPoint(x: self.frame.width * 0.7, y: self.frame.height/2)
+        gameOverRestart.position = CGPoint(x: self.frame.width, y: self.frame.height/2)
         gameOverRestart.zPosition = 3
+        let moveRestart = SKAction.move(to: CGPoint(x: self.frame.width * 0.7, y: self.frame.height/2), duration: 1.0)
+        gameOverRestart.run(moveRestart)
         self.addChild(gameOverRestart)
     }
     
     //Back button on game over
     func createGameOverQuit(){
         gameOverQuit = SKSpriteNode(imageNamed: "back_over")
-        gameOverQuit.position = CGPoint(x: self.frame.width/3, y: self.frame.height/2)
+        gameOverQuit.position = CGPoint(x: 0, y: self.frame.height/2)
         gameOverQuit.zPosition = 3
+        let moveQuit = SKAction.move(to: CGPoint(x: self.frame.width/3, y: self.frame.height/2), duration: 1.0)
+        gameOverQuit.run(moveQuit)
         self.addChild(gameOverQuit)
     }
     
     //Map button on game over
     func createGameOverMap(){
         gameOverMap = SKSpriteNode(imageNamed: "map")
-        gameOverMap.position = CGPoint(x: self.frame.width/2, y: self.frame.height/3)
+        gameOverMap.position = CGPoint(x: self.frame.width, y: self.frame.height/3)
         gameOverMap.zPosition = 3
+        let moveMap = SKAction.move(to: CGPoint(x: self.frame.width/2, y: self.frame.height/3), duration: 1.0)
+        gameOverMap.run(moveMap)
         self.addChild(gameOverMap)
     }
     
@@ -253,6 +263,7 @@ extension GamePlayScene{
         self.physicsBody?.isDynamic = false
         self.physicsBody?.affectedByGravity = false
         self.physicsWorld.contactDelegate = self
+        self.physicsWorld.speed = 1.0
         //Add collision and contact detection
         self.physicsBody?.categoryBitMask = CollisionBitMask.sceneCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.heroCategory

@@ -82,7 +82,6 @@ class MainMenuScene: SKScene, GADBannerViewDelegate{
             
             if play.contains(touch.location(in: self)){
                 play.setScale(1.2)
-                
                 let scene = GamePlayScene(size: self.size)
                 let reveal = SKTransition.reveal(with: .down, duration: 1.0)
                 self.view?.presentScene(scene, transition: reveal)

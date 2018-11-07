@@ -48,7 +48,7 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
         SoundManager.sharedInstance.startPlaying()
         }
     }
-
+     
      var shouldAutorotate: Bool {
         return false
     }
